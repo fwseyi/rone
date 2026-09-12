@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover Rone's approach to material, form and a lasting wardrobe.">
+  <title>About Rone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="assets/rone-about-hero.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;family=DM+Mono:wght@300;400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="rone-pages.css">
+  <link rel="stylesheet" href="rone-currency.css">
+  <script src="rone-currency.js"></script>
+  <style>
+    .about-hero {
+      position: relative;
+      height: 72svh;
+      min-height: 540px;
+      max-height: 820px;
+      overflow: hidden;
+      color: var(--white);
+      background: #373b35;
+    }
+
+    .about-hero::after {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 12, 10, 0.3);
+      content: "";
+    }
+
+    .about-hero img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center 32%;
+    }
+
+    .about-hero-content {
+      position: absolute;
+      z-index: 2;
+      right: 28px;
+      bottom: 28px;
+      left: 28px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .about-hero h1 {
+      margin: 6px 0 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 112px;
+      font-weight: 500;
+      line-height: 0.75;
+    }
+
+    .about-hero-note {
+      max-width: 340px;
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 23px;
+      line-height: 1.05;
+      text-align: right;
+    }
+
+    .manifesto {
+      display: grid;
+      grid-template-columns: minmax(0, 1.28fr) minmax(340px, 0.72fr);
+      gap: 55px;
+      min-height: 390px;
+      padding: 67px 28px;
+      border-bottom: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .manifesto h2 {
+      max-width: 850px;
+      font-size: 58px;
+    }
+
+    .manifesto-copy {
+      align-self: end;
+    }
+
+    .manifesto-copy p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .house-section {
+      display: grid;
+      grid-template-columns: minmax(390px, 0.72fr) minmax(0, 1.28fr);
+      min-height: 720px;
+      color: var(--white);
+      background: var(--oxblood);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .house-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 43px 34px;
+      border-right: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .house-copy h2 {
+      margin-top: 10px;
+    }
+
+    .house-copy-bottom {
+      max-width: 430px;
+    }
+
+    .house-copy-bottom p {
+      margin: 0 0 19px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .house-image {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .house-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .materials-heading {
+      min-height: 170px;
+      background: var(--paper);
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .material-study {
+      min-width: 0;
+      border-right: 1px solid var(--line);
+    }
+
+    .material-study:last-child {
+      border-right: 0;
+    }
+
+    .material-study figure {
+      aspect-ratio: 4 / 5;
+      margin: 0;
+      overflow: hidden;
+      background: var(--blue);
+    }
+
+    .material-study img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms ease;
+    }
+
+    .material-study:hover img {
+      transform: scale(1.018);
+    }
+
+    .material-study-copy {
+      min-height: 170px;
+      padding: 20px 18px 25px;
+    }
+
+    .material-study-copy h3 {
+      margin: 7px 0 14px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .material-study-copy p:last-child {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .making-section {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(500px, 1.18fr);
+      min-height: 640px;
+      background: var(--blue);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .making-image {
+      min-width: 0;
+      overflow: hidden;
+      border-right: 1px solid rgba(17, 17, 15, 0.25);
+    }
+
+    .making-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .making-copy {
+      padding: 42px 33px 48px;
+    }
+
+    .making-copy h2 {
+      max-width: 600px;
+      margin-top: 10px;
+    }
+
+    .principle-list {
+      margin-top: 70px;
+      border-top: 1px solid rgba(17, 17, 15, 0.35);
+    }
+
+    .principle {
+      display: grid;
+      grid-template-columns: 45px minmax(0, 1fr);
+      gap: 17px;
+      padding: 19px 0;
+      border-bottom: 1px solid rgba(17, 17, 15, 0.35);
+    }
+
+    .principle > span {
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+    }
+
+    .principle h3,
+    .principle p {
+      margin: 0;
+    }
+
+    .principle h3 {
+      margin-bottom: 6px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .principle p {
+      max-width: 530px;
+      color: rgba(17, 17, 15, 0.67);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .belief {
+      display: grid;
+      place-items: center;
+      min-height: 500px;
+      padding: 70px 28px;
+      color: var(--white);
+      background: var(--green);
+      text-align: center;
+    }
+
+    .belief blockquote {
+      max-width: 1040px;
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 58px;
+      font-weight: 500;
+      line-height: 0.98;
+    }
+
+    .belief cite {
+      display: block;
+      margin-top: 30px;
+      color: rgba(255, 255, 255, 0.72);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      font-style: normal;
+      text-transform: uppercase;
+    }
+
+    .client-care {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(3, minmax(0, 0.72fr));
+      min-height: 260px;
+      background: var(--chalk);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .client-care > div,
+    .care-link {
+      padding: 34px 25px;
+      border-right: 1px solid var(--line);
+    }
+
+    .care-link:last-child {
+      border-right: 0;
+    }
+
+    .client-care h2 {
+      margin-top: 10px;
+    }
+
+    .care-link {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .care-link h3 {
+      margin: 0 0 12px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 25px;
+      font-weight: 500;
+    }
+
+    .care-link p {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .care-link span:last-child {
+      align-self: flex-end;
+      font-size: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .about-hero h1 {
+        font-size: 92px;
+      }
+
+      .material-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .material-study:nth-child(2) {
+        border-right: 0;
+      }
+
+      .material-study:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .about-hero {
+        height: 64svh;
+        min-height: 470px;
+      }
+
+      .about-hero img {
+        object-position: 58% center;
+      }
+
+      .about-hero-content {
+        right: 14px;
+        bottom: 18px;
+        left: 14px;
+        display: block;
+      }
+
+      .about-hero h1 {
+        font-size: 72px;
+      }
+
+      .about-hero-note {
+        max-width: 290px;
+        margin-top: 20px;
+        font-size: 19px;
+        text-align: left;
+      }
+
+      .manifesto {
+        display: block;
+        min-height: 0;
+        padding: 39px 15px 47px;
+      }
+
+      .manifesto h2 {
+        font-size: 39px;
+      }
+
+      .manifesto-copy {
+        margin-top: 45px;
+      }
+
+      .house-section,
+      .making-section {
+        display: block;
+        min-height: 0;
+      }
+
+      .house-copy,
+      .making-copy {
+        min-height: 440px;
+        padding: 30px 16px 36px;
+        border-right: 0;
+      }
+
+      .house-copy {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .house-image,
+      .making-image {
+        height: 62svh;
+        min-height: 460px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .materials-heading {
+        min-height: 125px;
+      }
+
+      .material-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .material-study-copy {
+        min-height: 190px;
+        padding: 15px 11px 20px;
+      }
+
+      .material-study-copy h3 {
+        font-size: 23px;
+      }
+
+      .principle-list {
+        margin-top: 45px;
+      }
+
+      .belief {
+        min-height: 430px;
+        padding: 55px 16px;
+      }
+
+      .belief blockquote {
+        font-size: 39px;
+      }
+
+      .client-care {
+        grid-template-columns: 1fr 1fr;
+        min-height: 0;
+      }
+
+      .client-care > div {
+        grid-column: 1 / -1;
+        min-height: 170px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .care-link {
+        min-height: 210px;
+        padding: 24px 15px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .care-link:nth-child(3) {
+        border-right: 0;
+      }
+
+      .care-link:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div data-rone-header data-current="about"></div>
+
+  <main>
+    <section class="about-hero" aria-labelledby="about-title">
+      <img src="assets/rone-about-hero.jpg" alt="A person in relaxed Rone tailoring" fetchpriority="high">
+      <div class="about-hero-content"><div><p class="eyebrow">About the house</p><h1 id="about-title">Rone</h1></div><p class="about-hero-note">A wardrobe for the space between formal and familiar.</p></div>
+    </section>
+
+    <section class="manifesto" aria-labelledby="manifesto-title">
+      <div><p class="eyebrow">Our approach</p><h2 class="section-heading" id="manifesto-title">Less display. More distinction. Clothes that leave room for the person wearing them.</h2></div>
+      <div class="manifesto-copy"><p>Rone is an independent fashion house shaped around lasting daily uniforms. We begin with proportion, touch and movement, then remove anything that does not earn its place.</p><p>The result is a wardrobe that can be worn often, combined instinctively and made more personal over time.</p></div>
+    </section>
+
+    <section class="house-section" id="the-house" aria-labelledby="house-title">
+      <div class="house-copy"><div><p class="eyebrow">The house</p><h2 class="section-heading" id="house-title">Old codes, lived differently.</h2></div><div class="house-copy-bottom"><p>Rone takes the assurance of traditional dressing and loosens it for a new generation. The blazer is softer. The trouser has room. Leather goods are precise without feeling precious.</p><p>Nothing is reserved for an occasion. Every piece is intended to take part in a life.</p></div></div>
+      <div class="house-image"><img src="https://images.pexels.com/photos/14577586/pexels-photo-14577586.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="Rone tailoring and knitwear arranged together"></div>
+    </section>
+
+    <section id="materials" aria-labelledby="materials-title">
+      <div class="section-header materials-heading"><div><p class="eyebrow">Material</p><h2 class="section-heading" id="materials-title">The character is in the cloth.</h2></div><p>Materials are selected for hand, movement and the way they change through wear.</p></div>
+      <div class="material-grid">
+        <article class="material-study"><figure><img src="https://images.pexels.com/photos/6630853/pexels-photo-6630853.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1000" alt="Fine merino knit texture"></figure><div class="material-study-copy"><p class="eyebrow">01 / Merino</p><h3>Fine warmth</h3><p>Breathable, light and naturally adaptable across seasons.</p></div></article>
+        <article class="material-study"><figure><img src="https://images.pexels.com/photos/5710046/pexels-photo-5710046.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1000" alt="Cotton and knit garments folded together"></figure><div class="material-study-copy"><p class="eyebrow">02 / Cotton</p><h3>Daily structure</h3><p>Compact poplin, soft rib and dense twill with an honest hand.</p></div></article>
+        <article class="material-study"><figure><img src="https://images.pexels.com/photos/23223854/pexels-photo-23223854.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1000" alt="Brown leather bag detail"></figure><div class="material-study-copy"><p class="eyebrow">03 / Leather</p><h3>Patina over polish</h3><p>Supple hides chosen to soften, deepen and record their use.</p></div></article>
+        <article class="material-study"><figure><img src="https://images.pexels.com/photos/31935097/pexels-photo-31935097.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1000" alt="Soft suede shoe detail"></figure><div class="material-study-copy"><p class="eyebrow">04 / Suede</p><h3>Quiet depth</h3><p>A matte surface that brings warmth to grounded shoe forms.</p></div></article>
+      </div>
+    </section>
+
+    <section class="making-section" id="making" aria-labelledby="making-title">
+      <div class="making-image"><img src="https://images.pexels.com/photos/3927390/pexels-photo-3927390.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400" alt="A considered wardrobe of clothing, shoes and accessories"></div>
+      <div class="making-copy"><p class="eyebrow">How we make</p><h2 class="section-heading" id="making-title">Designed for repetition.</h2><div class="principle-list" id="principles">
+        <article class="principle"><span>01</span><div><h3>Useful proportion</h3><p>Each silhouette is tested for movement, layering and its relationship to the rest of the wardrobe.</p></div></article>
+        <article class="principle"><span>02</span><div><h3>Considered quantities</h3><p>Focused runs keep the collection intentional and make room to improve each form over time.</p></div></article>
+        <article class="principle"><span>03</span><div><h3>Care beyond purchase</h3><p>Clear care guidance and repair-minded construction help every piece remain in use for longer.</p></div></article>
+      </div></div>
+    </section>
+
+    <section class="belief" aria-label="Rone belief"><blockquote>“Good clothes do not announce a life. They become part of one.”<cite>Rone / Material, form, time</cite></blockquote></section>
+
+    <section class="client-care" id="client-care" aria-labelledby="care-title">
+      <div><p class="eyebrow">Client care</p><h2 class="section-heading" id="care-title">Here when needed.</h2></div>
+      <a class="care-link" href="rone-care-v1.html#contact"><div><h3>Contact</h3><p>Personal assistance with products, sizing and orders.</p></div><span aria-hidden="true">&#8594;</span></a>
+      <a class="care-link" href="rone-care-v1.html#delivery"><div><h3>Delivery &amp; returns</h3><p>Complimentary delivery above <span data-money-usd="500">$500</span> and 30-day returns.</p></div><span aria-hidden="true">&#8594;</span></a>
+      <a class="care-link" href="rone-care-v1.html#product-care"><div><h3>Product care</h3><p>Guidance for keeping natural materials at their best.</p></div><span aria-hidden="true">&#8594;</span></a>
+    </section>
+
+    <section class="service-strip" aria-label="Rone services">
+      <div class="service-item"><p class="eyebrow">01 / Delivery</p><p>Complimentary delivery above <span data-money-usd="500">$500</span>.</p></div>
+      <div class="service-item"><p class="eyebrow">02 / Returns</p><p>Returns accepted within 30 days.</p></div>
+      <div class="service-item"><p class="eyebrow">03 / Care</p><p>Repair support for every Rone piece.</p></div>
+    </section>
+  </main>
+
+  <div data-rone-footer></div>
+  <script src="rone-shell.js"></script>
+  <script>window.__RONE_ABOUT_READY__ = true;</script>
+</body>
+</html>

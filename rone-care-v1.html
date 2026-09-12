@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rone client care, delivery, returns, product care, sizing and frequently asked questions.">
+  <title>Client Care - Rone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;family=DM+Mono:wght@300;400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="rone-pages.css">
+  <link rel="stylesheet" href="rone-currency.css">
+  <script src="rone-currency.js"></script>
+  <style>
+    .care-page {
+      background: var(--paper);
+    }
+
+    .care-hero {
+      display: grid;
+      grid-template-columns: minmax(360px, 0.72fr) minmax(0, 1.28fr);
+      min-height: 535px;
+      border-bottom: 1px solid var(--line);
+      color: var(--white);
+      background: var(--green);
+    }
+
+    .care-hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px 38px 42px;
+      border-right: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    .care-hero h1 {
+      margin: 9px 0 21px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 70px;
+      font-weight: 500;
+      line-height: 0.92;
+    }
+
+    .care-hero-copy > div > p:last-child {
+      max-width: 430px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .care-hours {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding-top: 23px;
+      border-top: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    .care-hours p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .care-hours span {
+      display: block;
+      margin-bottom: 5px;
+      color: rgba(255, 255, 255, 0.64);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .care-hero-image {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .care-hero-image img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center 34%;
+    }
+
+    .care-subnav {
+      position: sticky;
+      z-index: 30;
+      top: calc(var(--announcement-height) + var(--header-height));
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-bottom: 1px solid var(--line);
+      background: rgba(250, 250, 247, 0.98);
+    }
+
+    .care-subnav a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 53px;
+      padding: 0 17px;
+      border-right: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .care-subnav a:last-child {
+      border-right: 0;
+    }
+
+    .care-subnav a:hover,
+    .care-subnav a:focus-visible,
+    .care-subnav a.active {
+      color: var(--ink);
+      background: var(--chalk);
+    }
+
+    .care-section {
+      scroll-margin-top: calc(var(--announcement-height) + var(--header-height) + 53px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .care-section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+      align-items: end;
+      gap: 40px;
+      min-height: 190px;
+      padding: 44px 28px 26px;
+      border-bottom: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .care-section-heading h2 {
+      margin: 6px 0 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 48px;
+      font-weight: 500;
+      line-height: 0.98;
+    }
+
+    .care-section-heading > p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(330px, 0.7fr);
+      background: var(--paper);
+    }
+
+    .contact-form-wrap {
+      padding: 44px max(28px, 8vw) 60px;
+      border-right: 1px solid var(--line);
+    }
+
+    .contact-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px 13px;
+      width: min(100%, 760px);
+    }
+
+    .contact-form .full,
+    .contact-form .primary-button,
+    .contact-status {
+      grid-column: 1 / -1;
+    }
+
+    .contact-form .primary-button {
+      justify-self: start;
+      min-width: 220px;
+      margin-top: 8px;
+    }
+
+    .contact-status {
+      margin: 0;
+      padding: 13px 15px;
+      border-left: 2px solid var(--green);
+      background: var(--chalk);
+      color: var(--green);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .contact-status[hidden] {
+      display: none;
+    }
+
+    .contact-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 44px 34px;
+      background: var(--blue);
+    }
+
+    .contact-meta dl {
+      margin: 0;
+    }
+
+    .contact-meta dl div {
+      padding: 17px 0;
+      border-top: 1px solid rgba(17, 17, 15, 0.25);
+    }
+
+    .contact-meta dt {
+      margin-bottom: 6px;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .contact-meta dd {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .contact-meta .text-link {
+      align-self: flex-start;
+      margin-top: 40px;
+    }
+
+    .delivery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      background: var(--paper);
+    }
+
+    .delivery-column {
+      min-height: 310px;
+      padding: 34px 27px 42px;
+      border-right: 1px solid var(--line);
+    }
+
+    .delivery-column:last-child {
+      border-right: 0;
+    }
+
+    .delivery-column h3 {
+      margin: 11px 0 17px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 29px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .delivery-column p:not(.eyebrow) {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .delivery-column ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .delivery-column li {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 11px 0;
+      border-top: 1px solid var(--soft-line);
+      font-size: 12px;
+    }
+
+    .delivery-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .delivery-actions a,
+    .delivery-actions button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      padding: 0 28px;
+      border-right: 1px solid var(--line);
+      background: transparent;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .delivery-actions > :last-child {
+      border-right: 0;
+    }
+
+    .care-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      background: var(--paper);
+    }
+
+    .care-method {
+      min-height: 315px;
+      padding: 31px 24px 40px;
+      border-right: 1px solid var(--line);
+    }
+
+    .care-method:last-child {
+      border-right: 0;
+    }
+
+    .care-method-number {
+      margin: 0 0 85px;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+    }
+
+    .care-method h3 {
+      margin: 0 0 13px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .care-method p:last-child {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .size-layout {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      min-height: 510px;
+      background: var(--paper);
+    }
+
+    .size-tabs {
+      padding: 28px 22px;
+      border-right: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .size-tab {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-height: 49px;
+      padding: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .size-tab[aria-selected="true"] {
+      color: var(--ink);
+    }
+
+    .size-tab[aria-selected="true"]::after {
+      content: "\2192";
+    }
+
+    .size-content {
+      padding: 42px 36px 55px;
+      overflow-x: auto;
+    }
+
+    .size-panel[hidden] {
+      display: none;
+    }
+
+    .size-panel h3 {
+      margin: 0 0 13px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 34px;
+      font-weight: 500;
+    }
+
+    .size-panel > p {
+      max-width: 650px;
+      margin: 0 0 30px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .size-table {
+      width: 100%;
+      min-width: 590px;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .size-table th,
+    .size-table td {
+      height: 48px;
+      padding: 0 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .size-table th {
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
+      background: var(--paper);
+    }
+
+    .faq-aside {
+      padding: 39px 28px;
+      border-right: 1px solid var(--line);
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .faq-aside p:not(.eyebrow) {
+      max-width: 380px;
+      margin: 13px 0 28px;
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .faq-aside .text-link {
+      color: var(--white);
+    }
+
+    .faq-list {
+      padding: 12px 30px 35px;
+    }
+
+    .faq-list details {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-list summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 66px;
+      list-style: none;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-list summary::after {
+      content: "+";
+      font-size: 17px;
+    }
+
+    .faq-list details[open] summary::after {
+      content: "-";
+    }
+
+    .faq-list details p {
+      max-width: 700px;
+      margin: -2px 45px 25px 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 960px) {
+      .care-hero {
+        grid-template-columns: minmax(330px, 0.9fr) minmax(0, 1.1fr);
+      }
+
+      .care-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .care-method:nth-child(2) {
+        border-right: 0;
+      }
+
+      .care-method:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .care-hero {
+        display: flex;
+        flex-direction: column-reverse;
+        min-height: 0;
+      }
+
+      .care-hero-image {
+        height: 46svh;
+        min-height: 330px;
+      }
+
+      .care-hero-copy {
+        min-height: 370px;
+        padding: 36px 17px 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.28);
+        border-right: 0;
+      }
+
+      .care-hero h1 {
+        font-size: 50px;
+      }
+
+      .care-hours {
+        margin-top: 45px;
+      }
+
+      .care-subnav {
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .care-subnav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .care-subnav a {
+        flex: 0 0 auto;
+        min-width: 150px;
+      }
+
+      .care-section-heading {
+        display: block;
+        min-height: 170px;
+        padding: 36px 14px 23px;
+      }
+
+      .care-section-heading h2 {
+        font-size: 39px;
+      }
+
+      .care-section-heading > p {
+        max-width: 330px;
+        margin-top: 22px;
+        text-align: left;
+      }
+
+      .contact-layout,
+      .delivery-grid,
+      .delivery-actions,
+      .size-layout,
+      .faq-layout {
+        display: block;
+      }
+
+      .contact-form-wrap,
+      .contact-meta,
+      .delivery-column,
+      .size-content,
+      .faq-aside,
+      .faq-list {
+        padding-right: 14px;
+        padding-left: 14px;
+      }
+
+      .contact-form-wrap,
+      .delivery-column,
+      .faq-aside {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .contact-form {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form .full,
+      .contact-form .primary-button,
+      .contact-status {
+        grid-column: auto;
+      }
+
+      .delivery-column {
+        min-height: 0;
+        padding-top: 31px;
+        padding-bottom: 38px;
+      }
+
+      .delivery-actions a,
+      .delivery-actions button {
+        min-height: 66px;
+        padding: 0 14px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .care-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .care-method,
+      .care-method:nth-child(2) {
+        min-height: 245px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .care-method-number {
+        margin-bottom: 54px;
+      }
+
+      .size-tabs {
+        display: flex;
+        gap: 22px;
+        padding: 0 14px;
+        overflow-x: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        background: var(--paper);
+      }
+
+      .size-tab {
+        flex: 0 0 auto;
+        min-width: 90px;
+        border-bottom: 2px solid transparent;
+      }
+
+      .size-tab[aria-selected="true"] {
+        border-bottom-color: var(--ink);
+      }
+
+      .size-tab[aria-selected="true"]::after {
+        display: none;
+      }
+
+      .size-content {
+        padding-top: 32px;
+        padding-bottom: 42px;
+      }
+
+      .faq-aside {
+        padding-top: 36px;
+        padding-bottom: 42px;
+      }
+
+      .faq-list {
+        padding-top: 5px;
+        padding-bottom: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div data-rone-header></div>
+
+  <main class="care-page">
+    <section class="care-hero" aria-labelledby="care-title">
+      <div class="care-hero-copy"><div><p class="eyebrow">Rone services</p><h1 id="care-title">Client care.</h1><p>Thoughtful support for choosing, receiving and living with every Rone piece.</p></div><div class="care-hours"><p><span>Available</span>Monday-Friday<br>9:00 AM-6:00 PM EST</p><p><span>Reply time</span>Within one business day</p></div></div>
+      <div class="care-hero-image"><img src="https://images.pexels.com/photos/6630853/pexels-photo-6630853.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1800" alt="Close view of a person wearing soft Rone knitwear"></div>
+    </section>
+
+    <nav class="care-subnav" aria-label="Client care sections">
+      <a href="#contact" data-care-nav="contact"><span>Contact</span><span>01</span></a>
+      <a href="#delivery" data-care-nav="delivery"><span>Delivery &amp; returns</span><span>02</span></a>
+      <a href="#product-care" data-care-nav="product-care"><span>Product care</span><span>03</span></a>
+      <a href="#size-guide" data-care-nav="size-guide"><span>Size guide</span><span>04</span></a>
+      <a href="#faq" data-care-nav="faq"><span>FAQ</span><span>05</span></a>
+    </nav>
+
+    <section class="care-section" id="contact" aria-labelledby="contact-title">
+      <div class="care-section-heading"><div><p class="eyebrow">Client care</p><h2 id="contact-title">Contact Rone.</h2></div><p>Share the detail with us and the right member of the team will reply.</p></div>
+      <div class="contact-layout">
+        <div class="contact-form-wrap">
+          <form class="contact-form" data-contact-form>
+            <label class="field"><span>First name</span><input type="text" name="firstName" autocomplete="given-name" required></label>
+            <label class="field"><span>Last name</span><input type="text" name="lastName" autocomplete="family-name" required></label>
+            <label class="field"><span>Email address</span><input type="email" name="email" autocomplete="email" required></label>
+            <label class="field"><span>Order number (optional)</span><input type="text" name="order" placeholder="RNE-482610"></label>
+            <label class="field full"><span>What can we help with?</span><select name="subject" required><option value="">Choose a subject</option><option>Product and sizing</option><option>Order status</option><option>Delivery change</option><option>Return or exchange</option><option>Product care or repair</option><option>Other</option></select></label>
+            <label class="field full"><span>Message</span><textarea name="message" rows="5" required></textarea></label>
+            <label class="check-label full"><input type="checkbox" name="copy"><span>Send a copy of this request to my email.</span></label>
+            <p class="contact-status" data-contact-status role="status" aria-live="polite" hidden></p>
+            <button class="primary-button" type="submit">Send request</button>
+          </form>
+        </div>
+        <aside class="contact-meta"><dl><div><dt>Email</dt><dd>care@rone.example</dd></div><div><dt>Telephone</dt><dd>+1 212 555 0186</dd></div><div><dt>Hours</dt><dd>Monday-Friday<br>9:00 AM-6:00 PM EST</dd></div><div><dt>Languages</dt><dd>English / French</dd></div></dl><a class="text-link" href="rone-tracking-v1.html"><span>Track an order</span><span aria-hidden="true">&#8594;</span></a></aside>
+      </div>
+    </section>
+
+    <section class="care-section" id="delivery" aria-labelledby="delivery-title">
+      <div class="care-section-heading"><div><p class="eyebrow">Client care</p><h2 id="delivery-title">Delivery &amp; returns.</h2></div><p>Clear timing, considered packaging and thirty days to decide at home.</p></div>
+      <div class="delivery-grid">
+        <article class="delivery-column"><p class="eyebrow">United States</p><h3>Domestic delivery</h3><p>Orders are prepared Monday through Friday. A signature may be requested for high-value deliveries.</p><ul><li><span>Standard / 3-5 days</span><span data-money-usd="25">$25</span></li><li><span>Orders above <span data-money-usd="500">$500</span></span><span>Complimentary</span></li><li><span>Express / 1-2 days</span><span data-money-usd="35">$35</span></li><li><span>Rush / next day</span><span data-money-usd="55">$55</span></li></ul></article>
+        <article class="delivery-column"><p class="eyebrow">International</p><h3>Worldwide delivery</h3><p>Available destinations and duties are calculated at checkout. Local taxes may be collected before delivery.</p><ul><li><span>Canada / 3-6 days</span><span data-money-usd="45">$45</span></li><li><span>United Kingdom / 4-7 days</span><span data-money-usd="55">$55</span></li><li><span>European Union / 4-7 days</span><span data-money-usd="55">$55</span></li><li><span>Nigeria / 5-9 days</span><span data-money-usd="65">$65</span></li></ul></article>
+        <article class="delivery-column"><p class="eyebrow">Returns</p><h3>Thirty days to consider.</h3><p>Unworn pieces may be returned in their original condition with tags, protective materials and packaging intact.</p><ul><li><span>Return window</span><span>30 days</span></li><li><span>Refund timing</span><span>5-10 days</span></li><li><span>Final-sale pieces</span><span>Not returnable</span></li><li><span>Underwear</span><span>Hygiene seal intact</span></li></ul></article>
+      </div>
+      <div class="delivery-actions"><a href="rone-tracking-v1.html"><span>Track a delivery</span><span aria-hidden="true">&#8594;</span></a><button type="button" data-start-return><span>Start a return request</span><span aria-hidden="true">&#8594;</span></button></div>
+    </section>
+
+    <section class="care-section" id="product-care" aria-labelledby="product-care-title">
+      <div class="care-section-heading"><div><p class="eyebrow">Client care</p><h2 id="product-care-title">Living with Rone.</h2></div><p>Simple habits preserve hand, shape and surface over time.</p></div>
+      <div class="care-grid">
+        <article class="care-method"><p class="care-method-number">01 / Knitwear</p><h3>Rest and reshape.</h3><p>Fold knitwear rather than hanging it. Air between wears, reshape while damp and store with natural moth protection.</p></article>
+        <article class="care-method"><p class="care-method-number">02 / Tailoring</p><h3>Give structure room.</h3><p>Use a broad hanger, brush gently after wear and allow tailoring to rest before returning it to a garment cover.</p></article>
+        <article class="care-method"><p class="care-method-number">03 / Leather</p><h3>Keep the surface calm.</h3><p>Avoid humidity, direct heat and overfilling. Remove light marks with a clean dry cloth and use a leather specialist for deeper care.</p></article>
+        <article class="care-method"><p class="care-method-number">04 / Footwear</p><h3>Rotate and recover.</h3><p>Allow shoes to dry naturally, use cedar trees after wear and protect suede or leather with the correct specialist treatment.</p></article>
+      </div>
+    </section>
+
+    <section class="care-section" id="size-guide" aria-labelledby="size-guide-title">
+      <div class="care-section-heading"><div><p class="eyebrow">Client care</p><h2 id="size-guide-title">Finding your size.</h2></div><p>Rone follows an easy, relaxed line. Product notes call out pieces with a closer or more generous fit.</p></div>
+      <div class="size-layout">
+        <div class="size-tabs" role="tablist" aria-label="Size guide category"><button class="size-tab" type="button" role="tab" aria-selected="true" data-size-tab="women">Women</button><button class="size-tab" type="button" role="tab" aria-selected="false" data-size-tab="men">Men</button><button class="size-tab" type="button" role="tab" aria-selected="false" data-size-tab="unisex">Unisex</button></div>
+        <div class="size-content">
+          <section class="size-panel" role="tabpanel" data-size-panel="women"><h3>Women / ready-to-wear</h3><p>Measure close to the body over light clothing. Between sizes, choose the larger size for Rone's intended ease.</p><table class="size-table"><thead><tr><th>Rone</th><th>US</th><th>UK</th><th>EU</th><th>Bust (in)</th><th>Waist (in)</th><th>Hip (in)</th></tr></thead><tbody><tr><td>XS</td><td>0-2</td><td>4-6</td><td>32-34</td><td>31-32</td><td>24-25</td><td>34-35</td></tr><tr><td>S</td><td>4-6</td><td>8-10</td><td>36-38</td><td>33-35</td><td>26-28</td><td>36-38</td></tr><tr><td>M</td><td>8-10</td><td>12-14</td><td>40-42</td><td>36-38</td><td>29-31</td><td>39-41</td></tr><tr><td>L</td><td>12-14</td><td>16-18</td><td>44-46</td><td>39-42</td><td>32-35</td><td>42-45</td></tr><tr><td>XL</td><td>16-18</td><td>20-22</td><td>48-50</td><td>43-46</td><td>36-39</td><td>46-49</td></tr></tbody></table></section>
+          <section class="size-panel" role="tabpanel" data-size-panel="men" hidden><h3>Men / ready-to-wear</h3><p>Jackets and knitwear are cut with natural ease. Use chest measurement as the primary reference.</p><table class="size-table"><thead><tr><th>Rone</th><th>US / UK</th><th>EU</th><th>Chest (in)</th><th>Waist (in)</th><th>Seat (in)</th></tr></thead><tbody><tr><td>XS</td><td>34</td><td>44</td><td>34-35</td><td>28-29</td><td>34-35</td></tr><tr><td>S</td><td>36</td><td>46</td><td>36-37</td><td>30-31</td><td>36-37</td></tr><tr><td>M</td><td>38-40</td><td>48-50</td><td>38-40</td><td>32-34</td><td>38-40</td></tr><tr><td>L</td><td>42</td><td>52</td><td>41-43</td><td>35-37</td><td>41-43</td></tr><tr><td>XL</td><td>44-46</td><td>54-56</td><td>44-47</td><td>38-41</td><td>44-47</td></tr></tbody></table></section>
+          <section class="size-panel" role="tabpanel" data-size-panel="unisex" hidden><h3>Unisex / Rone fit</h3><p>Unisex pieces use a shared relaxed block. Choose by chest and intended line; size down for a neater fit.</p><table class="size-table"><thead><tr><th>Rone</th><th>Chest (in)</th><th>Waist (in)</th><th>Body length (in)</th><th>Shoe US</th><th>Shoe EU</th></tr></thead><tbody><tr><td>XS</td><td>32-35</td><td>26-29</td><td>25-26</td><td>5-6</td><td>36-38</td></tr><tr><td>S</td><td>35-38</td><td>29-32</td><td>26-27</td><td>7-8</td><td>39-41</td></tr><tr><td>M</td><td>38-41</td><td>32-35</td><td>27-28</td><td>9-10</td><td>42-43</td></tr><tr><td>L</td><td>41-44</td><td>35-38</td><td>28-29</td><td>11-12</td><td>44-46</td></tr><tr><td>XL</td><td>44-48</td><td>38-42</td><td>29-30</td><td>13-14</td><td>47-48</td></tr></tbody></table></section>
+        </div>
+      </div>
+    </section>
+
+    <section class="care-section" id="faq" aria-labelledby="faq-title">
+      <div class="care-section-heading"><div><p class="eyebrow">Client care</p><h2 id="faq-title">Questions, answered.</h2></div><p>Essential details on orders, payment, availability and caring for your account.</p></div>
+      <div class="faq-layout">
+        <aside class="faq-aside"><p class="eyebrow">Still looking?</p><p>Send the detail to client care and we will connect you with the right person.</p><a class="text-link" href="#contact"><span>Contact the team</span><span aria-hidden="true">&#8594;</span></a></aside>
+        <div class="faq-list"><details><summary>Can I change or cancel an order?</summary><p>Contact client care as soon as possible. We can usually adjust an order before preparation begins, but changes cannot be guaranteed once a piece has entered dispatch.</p></details><details><summary>When will my card be charged?</summary><p>Your payment method is authorized when the order is placed and charged when the order is prepared. Any temporary authorization normally clears according to your bank's timing.</p></details><details><summary>How do I know whether a piece will be restocked?</summary><p>Limited-run pieces are not always repeated. Save the piece or join the Rone list to receive an availability note if it returns.</p></details><details><summary>Can underwear and swimwear be returned?</summary><p>Yes, when unworn and returned with every hygiene seal intact. For health and safety, pieces with a removed or damaged seal cannot be accepted.</p></details><details><summary>Do you offer repairs?</summary><p>We assess repairs individually based on material, construction and component availability. Send photographs through the contact form under Product care or repair.</p></details><details><summary>How do I update my delivery address?</summary><p>Saved addresses can be changed in your Rone account. For an order already placed, contact client care immediately; carrier restrictions may apply after dispatch.</p></details></div>
+      </div>
+    </section>
+  </main>
+
+  <div data-rone-footer></div>
+  <script src="rone-shell.js"></script>
+  <script>
+    const contactForm = document.querySelector("[data-contact-form]");
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+      const data = new FormData(contactForm);
+      const status = document.querySelector("[data-contact-status]");
+      status.textContent = `Thank you, ${data.get("firstName")}. Your request RNE-CARE-${String(Date.now()).slice(-4)} has been received. We will reply within one business day.`;
+      status.hidden = false;
+      contactForm.querySelector("button[type='submit']").textContent = "Request sent";
+      status.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    document.querySelector("[data-start-return]").addEventListener("click", () => {
+      contactForm.elements.subject.value = "Return or exchange";
+      document.querySelector("#contact").scrollIntoView({ behavior: "smooth", block: "start" });
+      window.setTimeout(() => contactForm.elements.order.focus(), 450);
+    });
+
+    document.querySelectorAll("[data-size-tab]").forEach((tab) => tab.addEventListener("click", () => {
+      const name = tab.dataset.sizeTab;
+      document.querySelectorAll("[data-size-tab]").forEach((item) => item.setAttribute("aria-selected", String(item === tab)));
+      document.querySelectorAll("[data-size-panel]").forEach((panel) => { panel.hidden = panel.dataset.sizePanel !== name; });
+    }));
+
+    const careSections = [...document.querySelectorAll(".care-section[id]")];
+    const careNav = [...document.querySelectorAll("[data-care-nav]")];
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      careNav.forEach((link) => link.classList.toggle("active", link.dataset.careNav === visible.target.id));
+    }, { rootMargin: "-35% 0px -55%", threshold: [0, 0.25, 0.5] });
+    careSections.forEach((section) => observer.observe(section));
+    window.__RONE_CARE_READY__ = true;
+  </script>
+</body>
+</html>

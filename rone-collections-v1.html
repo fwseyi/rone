@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore The First Assembly, Rone's collection of quiet tailoring and considered essentials.">
+  <title>The First Assembly — Rone Collections</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="assets/rone-collection-hero.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;family=DM+Mono:wght@300;400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="rone-pages.css">
+  <link rel="stylesheet" href="rone-currency.css">
+  <script src="rone-currency.js"></script>
+  <style>
+    .collection-hero {
+      position: relative;
+      height: 73svh;
+      min-height: 540px;
+      max-height: 820px;
+      overflow: hidden;
+      color: var(--white);
+      background: #484b45;
+    }
+
+    .collection-hero::after {
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 15, 12, 0.28);
+      content: "";
+    }
+
+    .collection-hero img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+
+    .collection-hero-content {
+      position: absolute;
+      z-index: 2;
+      right: 28px;
+      bottom: 28px;
+      left: 28px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .collection-hero h1 {
+      max-width: 900px;
+      margin: 8px 0 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 82px;
+      font-weight: 500;
+      line-height: 0.88;
+    }
+
+    .collection-index {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 18px;
+      margin: 0 0 5px;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .collection-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(330px, 0.75fr);
+      gap: 50px;
+      min-height: 330px;
+      padding: 62px 28px;
+      border-bottom: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .collection-intro h2 {
+      max-width: 780px;
+      font-size: 57px;
+    }
+
+    .collection-intro-copy {
+      align-self: end;
+      max-width: 490px;
+    }
+
+    .collection-intro-copy p {
+      margin: 0 0 27px;
+      color: var(--muted);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 24px;
+      line-height: 1.08;
+    }
+
+    .chapter-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.42fr) minmax(360px, 0.68fr);
+      min-height: 700px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .chapter-image {
+      min-width: 0;
+      min-height: 700px;
+      overflow: hidden;
+      border-right: 1px solid var(--line);
+      background: var(--blue);
+    }
+
+    .chapter-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .chapter-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 42px 34px;
+    }
+
+    .chapter-copy h2 {
+      max-width: 420px;
+      margin-top: 10px;
+    }
+
+    .chapter-copy-bottom {
+      max-width: 420px;
+    }
+
+    .chapter-copy-bottom p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .look-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.2fr 0.9fr;
+      min-height: 620px;
+      border-bottom: 1px solid var(--line);
+      background: var(--green);
+    }
+
+    .look {
+      position: relative;
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      border-right: 1px solid rgba(255, 255, 255, 0.36);
+    }
+
+    .look:last-child {
+      border-right: 0;
+    }
+
+    .look img {
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.78);
+      transition: transform 600ms ease;
+    }
+
+    .look:hover img {
+      transform: scale(1.015);
+    }
+
+    .look figcaption {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 16px;
+      color: var(--white);
+      background: rgba(17, 17, 15, 0.68);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .material-chapter {
+      display: grid;
+      grid-template-columns: minmax(380px, 0.72fr) minmax(0, 1.28fr);
+      min-height: 680px;
+      color: var(--white);
+      background: var(--green);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .material-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px 34px;
+      border-right: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .material-copy h2 {
+      margin-top: 10px;
+    }
+
+    .material-copy p:last-child {
+      max-width: 430px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.76);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 23px;
+      line-height: 1.08;
+    }
+
+    .material-image {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .material-image img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center 44%;
+    }
+
+    .edit-heading {
+      min-height: 130px;
+      background: var(--chalk);
+    }
+
+    .edit-heading .section-heading {
+      font-size: 42px;
+    }
+
+    .collection-close {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      min-height: 330px;
+      color: var(--white);
+      background: var(--oxblood);
+    }
+
+    .collection-close > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 28px;
+    }
+
+    .collection-close > div:first-child {
+      border-right: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .collection-close h2 {
+      max-width: 720px;
+      color: var(--white);
+    }
+
+    .collection-close p {
+      max-width: 440px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .collection-close .text-link {
+      align-self: flex-start;
+      color: var(--white);
+    }
+
+    @media (max-width: 900px) {
+      .collection-hero h1 {
+        font-size: 70px;
+      }
+
+      .chapter-split,
+      .material-chapter {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .collection-hero {
+        height: 64svh;
+        min-height: 480px;
+      }
+
+      .collection-hero img {
+        object-position: 58% center;
+      }
+
+      .collection-hero-content {
+        right: 14px;
+        bottom: 17px;
+        left: 14px;
+        display: block;
+      }
+
+      .collection-hero h1 {
+        max-width: 350px;
+        font-size: 49px;
+      }
+
+      .collection-index {
+        display: none;
+      }
+
+      .collection-intro {
+        display: block;
+        min-height: 0;
+        padding: 38px 15px 45px;
+      }
+
+      .collection-intro h2 {
+        font-size: 39px;
+      }
+
+      .collection-intro-copy {
+        margin-top: 43px;
+      }
+
+      .collection-intro-copy p {
+        font-size: 21px;
+      }
+
+      .chapter-split,
+      .material-chapter {
+        display: block;
+        min-height: 0;
+      }
+
+      .chapter-image,
+      .material-image {
+        height: 64svh;
+        min-height: 480px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .chapter-copy,
+      .material-copy {
+        min-height: 430px;
+        padding: 29px 16px 35px;
+        border-right: 0;
+      }
+
+      .look-grid {
+        grid-template-columns: 1fr 1fr;
+        min-height: 0;
+      }
+
+      .look {
+        aspect-ratio: 4 / 5;
+      }
+
+      .look:last-child {
+        display: none;
+      }
+
+      .material-copy p:last-child {
+        font-size: 20px;
+      }
+
+      .edit-heading {
+        min-height: 100px;
+      }
+
+      .edit-heading .section-heading {
+        font-size: 32px;
+      }
+
+      .collection-close {
+        display: block;
+        min-height: 0;
+      }
+
+      .collection-close > div {
+        min-height: 280px;
+        padding: 30px 16px;
+      }
+
+      .collection-close > div:first-child {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div data-rone-header data-current="collections"></div>
+
+  <main>
+    <section class="collection-hero" aria-labelledby="collection-title">
+      <img src="assets/rone-collection-hero.jpg" alt="Relaxed Rone tailoring from The First Assembly" fetchpriority="high">
+      <div class="collection-hero-content">
+        <div><p class="eyebrow">Pre-Fall 2026</p><h1 id="collection-title">The First Assembly</h1></div>
+        <p class="collection-index"><span>27 pieces</span><span>5 departments</span><span>One wardrobe</span></p>
+      </div>
+    </section>
+
+    <section class="collection-intro" aria-labelledby="collection-intro-title">
+      <div><p class="eyebrow">Rone / First principles</p><h2 class="section-heading" id="collection-intro-title">Clothes with presence, made to leave room for yours.</h2></div>
+      <div class="collection-intro-copy"><p>The First Assembly begins with the pieces we return to: relaxed tailoring, tactile knitwear, grounded shoes and leather forms that improve through use.</p><a class="text-link" href="rone-shop-v1.html"><span>Shop the collection</span><span aria-hidden="true">&#8594;</span></a></div>
+    </section>
+
+    <section class="chapter-split" id="chapter-one" aria-labelledby="chapter-one-title">
+      <div class="chapter-image"><img src="assets/rone-about-hero.jpg" alt="A person wearing relaxed neutral tailoring"></div>
+      <div class="chapter-copy">
+        <div><p class="eyebrow">A daily uniform</p><h2 class="section-heading" id="chapter-one-title">Tailoring without theatre.</h2></div>
+        <div class="chapter-copy-bottom"><p>Jackets sit softly at the shoulder. Trousers fall with ease. Fine-gauge knits move between formal rooms and familiar places without changing character.</p><a class="text-link" href="rone-shop-v1.html?category=Clothing"><span>Explore clothing</span><span aria-hidden="true">&#8594;</span></a></div>
+      </div>
+    </section>
+
+    <section class="look-grid" aria-label="Looks from The First Assembly">
+      <figure class="look"><img src="https://images.pexels.com/photos/19514232/pexels-photo-19514232.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1000" alt="Rone knitwear look"><figcaption><span>Look 03</span><span>Knit / Oat</span></figcaption></figure>
+      <figure class="look"><img src="https://images.pexels.com/photos/30573777/pexels-photo-30573777.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Rone relaxed trouser look"><figcaption><span>Look 07</span><span>Field / Khaki</span></figcaption></figure>
+      <figure class="look"><img src="https://images.pexels.com/photos/20377874/pexels-photo-20377874.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1000" alt="Rone monochrome evening look"><figcaption><span>Look 11</span><span>Evening / Ink</span></figcaption></figure>
+    </section>
+
+    <section class="material-chapter" id="chapter-two" aria-labelledby="chapter-two-title">
+      <div class="material-copy"><div><p class="eyebrow">Material studies</p><h2 class="section-heading" id="chapter-two-title">Texture before decoration.</h2></div><p>Merino, cotton, suede and leather carry the expression. Colour arrives in field olive, cacao, chalk and oxblood: tones chosen to live together rather than compete.</p></div>
+      <div class="material-image"><img src="https://images.pexels.com/photos/7760239/pexels-photo-7760239.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="Woman framed by the sleeves of a tactile merino knit"></div>
+    </section>
+
+    <section id="collection-edit" aria-labelledby="edit-title">
+      <div class="section-header edit-heading"><div><p class="eyebrow">The edit</p><h2 class="section-heading" id="edit-title">From the collection</h2></div><p>Eight pieces that establish the language of the First Assembly.</p></div>
+      <div class="catalog-grid" data-collection-products></div>
+    </section>
+
+    <section class="collection-close" aria-labelledby="collection-close-title">
+      <div><p class="eyebrow">Rone collection</p><h2 class="section-heading" id="collection-close-title">Built as a wardrobe, not a moment.</h2></div>
+      <div><p>Every piece is designed to enter an existing life, work across seasons and become more personal through wear.</p><a class="text-link" href="rone-about-v1.html"><span>Read our approach</span><span aria-hidden="true">&#8594;</span></a></div>
+    </section>
+
+    <section class="service-strip" aria-label="Rone services">
+      <div class="service-item"><p class="eyebrow">01 / Delivery</p><p>Complimentary delivery above <span data-money-usd="500">$500</span>.</p></div>
+      <div class="service-item"><p class="eyebrow">02 / Returns</p><p>Returns accepted within 30 days.</p></div>
+      <div class="service-item"><p class="eyebrow">03 / Care</p><p>Repair support for every Rone piece.</p></div>
+    </section>
+  </main>
+
+  <div data-rone-footer></div>
+  <script src="rone-data.js"></script>
+  <script src="rone-shell.js"></script>
+  <script>
+    const collectionSlugs = ["house-blazer", "fold-leather-tote", "soft-step-loafer", "ribbed-cashmere-polo", "pleated-field-trouser", "studio-shoulder-bag", "weekend-jacket", "merino-house-scarf"];
+    const collectionProducts = collectionSlugs.map((slug) => window.RONE_CATALOG.find((product) => product.slug === slug));
+    document.querySelector("[data-collection-products]").innerHTML = collectionProducts.map((product) => `<article class="catalog-card"><a href="rone-shop-v1.html?state=product&amp;product=${product.slug}" aria-label="View ${product.name}"><span class="catalog-media">${product.flag ? `<span class="catalog-flag">${product.flag}</span>` : ""}<img src="${product.primary}" alt="${product.name} in ${product.colour}" loading="lazy"><img src="${product.worn}" alt="${product.name} styled on a person" loading="lazy"></span><span class="catalog-meta"><span>${product.name}</span><span data-money-usd="${product.price}">${window.RONE_MONEY.format(product.price)}</span><span>${product.colour} / ${product.gender}</span></span></a></article>`).join("");
+    window.__RONE_COLLECTIONS_READY__ = true;
+  </script>
+</body>
+</html>

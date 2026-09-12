@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rone terms, privacy information and accessibility statement.">
+  <title>Policies - Rone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=DM+Mono:wght@300;400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="rone-pages.css">
+  <link rel="stylesheet" href="rone-currency.css">
+  <script src="rone-currency.js"></script>
+  <style>
+    .policies-page {
+      background: var(--paper);
+    }
+
+    .policies-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 430px);
+      align-items: end;
+      gap: 45px;
+      min-height: 260px;
+      padding: 58px 28px 31px;
+      border-bottom: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .policies-intro h1 {
+      margin-top: 9px;
+    }
+
+    .policies-intro > p {
+      margin: 0;
+      color: var(--muted);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 22px;
+      line-height: 1.08;
+      text-align: right;
+    }
+
+    .policies-layout {
+      display: grid;
+      grid-template-columns: 270px minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .policies-nav {
+      position: sticky;
+      top: calc(var(--announcement-height) + var(--header-height));
+      min-height: calc(100vh - var(--announcement-height) - var(--header-height));
+      padding: 30px 23px;
+      border-right: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .policies-nav > p {
+      margin-bottom: 22px;
+      color: var(--muted);
+    }
+
+    .policies-nav a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 48px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .policies-nav a:hover,
+    .policies-nav a:focus-visible,
+    .policies-nav a.active {
+      color: var(--ink);
+    }
+
+    .policies-nav a.active::after {
+      content: "\2192";
+    }
+
+    .policies-nav-meta {
+      margin-top: 48px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .policies-content {
+      min-width: 0;
+    }
+
+    .policy-section {
+      scroll-margin-top: calc(var(--announcement-height) + var(--header-height));
+      padding: 53px clamp(28px, 8vw, 125px) 72px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .policy-section:nth-child(even) {
+      background: var(--chalk);
+    }
+
+    .policy-heading {
+      max-width: 820px;
+      margin-bottom: 43px;
+    }
+
+    .policy-heading h2 {
+      margin: 7px 0 15px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 49px;
+      font-weight: 500;
+      line-height: 0.98;
+    }
+
+    .policy-heading p:last-child {
+      max-width: 650px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .policy-body {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 55px;
+      max-width: 980px;
+      border-top: 1px solid var(--line);
+    }
+
+    .policy-block {
+      padding: 24px 0 29px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .policy-block h3 {
+      margin: 0 0 11px;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .policy-block p,
+    .policy-block li {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.72;
+    }
+
+    .policy-block p {
+      margin: 0;
+    }
+
+    .policy-block p + p {
+      margin-top: 12px;
+    }
+
+    .policy-block ul {
+      margin: 0;
+      padding-left: 17px;
+    }
+
+    .policy-block a {
+      color: var(--ink);
+      border-bottom: 1px solid currentColor;
+    }
+
+    .policy-contact {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 30px;
+      padding: 33px clamp(28px, 8vw, 125px);
+      color: var(--white);
+      background: var(--green);
+    }
+
+    .policy-contact h2,
+    .policy-contact p {
+      margin: 0;
+    }
+
+    .policy-contact h2 {
+      margin-top: 5px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 31px;
+      font-weight: 500;
+    }
+
+    .policy-contact .secondary-button {
+      min-width: 190px;
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    .policy-contact .secondary-button:hover {
+      color: var(--green);
+      background: var(--white);
+    }
+
+    @media (max-width: 760px) {
+      .policies-intro {
+        display: block;
+        min-height: 215px;
+        padding: 42px 14px 23px;
+      }
+
+      .policies-intro > p {
+        max-width: 330px;
+        margin-top: 26px;
+        font-size: 18px;
+        text-align: left;
+      }
+
+      .policies-layout {
+        display: block;
+      }
+
+      .policies-nav {
+        position: sticky;
+        z-index: 30;
+        top: calc(var(--announcement-height) + var(--header-height));
+        display: flex;
+        gap: 22px;
+        min-height: 0;
+        padding: 0 14px;
+        overflow-x: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        background: rgba(250, 250, 247, 0.98);
+        scrollbar-width: none;
+      }
+
+      .policies-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .policies-nav > p,
+      .policies-nav-meta {
+        display: none;
+      }
+
+      .policies-nav a {
+        flex: 0 0 auto;
+        min-height: 52px;
+        border-bottom: 2px solid transparent;
+      }
+
+      .policies-nav a.active {
+        border-bottom-color: var(--ink);
+      }
+
+      .policies-nav a.active::after {
+        display: none;
+      }
+
+      .policy-section {
+        scroll-margin-top: calc(var(--announcement-height) + var(--header-height) + 52px);
+        padding: 40px 14px 54px;
+      }
+
+      .policy-heading h2 {
+        font-size: 40px;
+      }
+
+      .policy-body {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .policy-contact {
+        display: block;
+        padding: 32px 14px 37px;
+      }
+
+      .policy-contact .secondary-button {
+        margin-top: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div data-rone-header></div>
+
+  <main class="policies-page">
+    <section class="policies-intro" aria-labelledby="policies-title"><div><p class="eyebrow">Rone information</p><h1 class="display-heading" id="policies-title">Policies.</h1></div><p>Clear terms for shopping with Rone and using our digital services.</p></section>
+    <div class="policies-layout">
+      <nav class="policies-nav" aria-label="Policy sections"><p class="eyebrow">Contents</p><a href="#terms" data-policy-nav="terms">Terms of sale</a><a href="#privacy" data-policy-nav="privacy">Privacy</a><a href="#accessibility" data-policy-nav="accessibility">Accessibility</a><p class="policies-nav-meta">Effective August 17, 2026<br><span data-currency-location>Nigeria / NGN</span></p></nav>
+      <div class="policies-content">
+        <section class="policy-section" id="terms" aria-labelledby="terms-title">
+          <div class="policy-heading"><p class="eyebrow">Policy</p><h2 id="terms-title">Terms of sale.</h2><p>These terms apply when you purchase a Rone piece through this website. Placing an order confirms your acceptance of the terms in effect at that time.</p></div>
+          <div class="policy-body">
+            <article class="policy-block"><h3>Orders</h3><p>An order is an offer to purchase. We confirm acceptance when the order enters preparation. We may decline or cancel an order where a piece is unavailable, payment cannot be authorized, delivery information is incomplete or activity appears unauthorized.</p></article>
+            <article class="policy-block"><h3>Prices and payment</h3><p>Prices are shown in US dollars unless another currency is selected. Applicable tax and delivery charges are presented before an order is placed. Your payment method may be authorized at checkout and charged when preparation begins.</p></article>
+            <article class="policy-block"><h3>Availability</h3><p>Rone works in limited runs. A piece shown online may become unavailable before checkout is complete. If availability changes after purchase, we will contact you and reverse any related charge.</p></article>
+            <article class="policy-block"><h3>Delivery</h3><p>Delivery dates are estimates and may change because of carrier, customs or destination conditions. Risk passes when the order is delivered to the address supplied at checkout. Review the full <a href="rone-care-v1.html#delivery">delivery information</a>.</p></article>
+            <article class="policy-block"><h3>Returns and refunds</h3><p>Eligible unworn pieces may be returned within 30 days with tags and protective materials intact. Hygiene seals must remain in place. Final-sale and personalized pieces are not returnable unless faulty.</p></article>
+            <article class="policy-block"><h3>Product representation</h3><p>We work to show colour, material and scale accurately. Displays vary, and natural materials may include small differences in tone or grain. These distinctions are part of the piece rather than faults.</p></article>
+            <article class="policy-block"><h3>Warranty and liability</h3><p>Your statutory consumer rights are not affected. To the extent permitted by law, Rone is not responsible for indirect losses or losses not reasonably foreseeable when the order was accepted.</p></article>
+            <article class="policy-block"><h3>Governing terms</h3><p>These terms are governed by the law applicable to the Rone selling entity and your mandatory local consumer protections. Questions can be sent through <a href="rone-care-v1.html#contact">client care</a>.</p></article>
+          </div>
+        </section>
+
+        <section class="policy-section" id="privacy" aria-labelledby="privacy-title">
+          <div class="policy-heading"><p class="eyebrow">Policy</p><h2 id="privacy-title">Privacy.</h2><p>This notice describes the information Rone uses to provide orders, accounts, client care and a considered online experience.</p></div>
+          <div class="policy-body">
+            <article class="policy-block"><h3>Information we collect</h3><ul><li>Contact, account and delivery information you provide.</li><li>Order, return, payment-status and client-care history.</li><li>Saved pieces, preferences and list subscriptions.</li><li>Device, browser and website interaction data.</li></ul></article>
+            <article class="policy-block"><h3>How we use information</h3><p>We use information to process purchases, deliver orders, prevent misuse, maintain accounts, respond to requests, improve our services and send communications you choose to receive.</p></article>
+            <article class="policy-block"><h3>Payment information</h3><p>Payment details are processed by secure payment providers. Rone receives transaction status and limited card information, such as card type and final digits, rather than complete card credentials.</p></article>
+            <article class="policy-block"><h3>Sharing</h3><p>Information may be shared with service providers supporting payment, hosting, analytics, delivery, returns, communications and fraud prevention. We do not sell personal information for money.</p></article>
+            <article class="policy-block"><h3>Cookies and local storage</h3><p>Essential storage keeps your bag, saved pieces and account state available. With appropriate choice where required, analytics may help us understand performance and improve navigation.</p></article>
+            <article class="policy-block"><h3>Retention</h3><p>We keep information for as long as needed to provide services, meet legal and accounting duties, resolve disputes and prevent fraud. Retention periods vary by category and location.</p></article>
+            <article class="policy-block"><h3>Your choices</h3><p>Depending on where you live, you may request access, correction, deletion, portability or restriction, and may object to certain uses. You can unsubscribe from marketing at any time.</p></article>
+            <article class="policy-block"><h3>Contact about privacy</h3><p>Send a privacy request through <a href="rone-care-v1.html#contact">client care</a>. We may need to verify your identity before completing a request and will respond within the period required by applicable law.</p></article>
+          </div>
+        </section>
+
+        <section class="policy-section" id="accessibility" aria-labelledby="accessibility-title">
+          <div class="policy-heading"><p class="eyebrow">Policy</p><h2 id="accessibility-title">Accessibility.</h2><p>Rone is working toward an experience that can be used with a broad range of devices, preferences and assistive technologies.</p></div>
+          <div class="policy-body">
+            <article class="policy-block"><h3>Our approach</h3><p>We aim to follow WCAG 2.2 Level AA guidance where practical and include accessibility in design, content, development and quality review.</p></article>
+            <article class="policy-block"><h3>Current provisions</h3><ul><li>Keyboard-accessible navigation and controls.</li><li>Visible focus and descriptive form labels.</li><li>Text alternatives for meaningful imagery.</li><li>Responsive layouts and reduced-motion support.</li></ul></article>
+            <article class="policy-block"><h3>Known limitations</h3><p>Some third-party content and services may not yet offer the same level of access. Product photography and emerging prototype interactions continue to be reviewed as the site develops.</p></article>
+            <article class="policy-block"><h3>Feedback</h3><p>If anything prevents you from shopping or finding information, contact us with the page, device and assistance needed. We will offer an alternative where possible and use the report to improve the experience.</p></article>
+            <article class="policy-block"><h3>Contact</h3><p>Use the <a href="rone-care-v1.html#contact">client-care form</a> and choose Other, or email accessibility@rone.example. We aim to acknowledge accessibility feedback within two business days.</p></article>
+            <article class="policy-block"><h3>Statement review</h3><p>This statement was prepared for the Rone prototype on August 17, 2026 and will be reviewed as functionality, content and third-party services change.</p></article>
+          </div>
+        </section>
+      </div>
+    </div>
+    <section class="policy-contact" aria-labelledby="policy-help-title"><div><p class="eyebrow">Questions</p><h2 id="policy-help-title">Speak with client care.</h2></div><a class="secondary-button" href="rone-care-v1.html#contact">Contact Rone</a></section>
+  </main>
+
+  <div data-rone-footer></div>
+  <script src="rone-shell.js"></script>
+  <script>
+    const policySections = [...document.querySelectorAll(".policy-section")];
+    const policyLinks = [...document.querySelectorAll("[data-policy-nav]")];
+    const policyObserver = new IntersectionObserver((entries) => {
+      const active = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!active) return;
+      policyLinks.forEach((link) => link.classList.toggle("active", link.dataset.policyNav === active.target.id));
+    }, { rootMargin: "-28% 0px -62%", threshold: [0, 0.2, 0.5] });
+    policySections.forEach((section) => policyObserver.observe(section));
+    window.__RONE_POLICIES_READY__ = true;
+  </script>
+</body>
+</html>

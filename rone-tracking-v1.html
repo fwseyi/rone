@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track a Rone order and review its delivery progress.">
+  <title>Track an Order - Rone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=DM+Mono:wght@300;400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="rone-pages.css">
+  <link rel="stylesheet" href="rone-currency.css">
+  <script src="rone-currency.js"></script>
+  <style>
+    .tracking-page {
+      min-height: 72vh;
+      background: var(--paper);
+    }
+
+    .tracking-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 440px);
+      align-items: end;
+      gap: 45px;
+      min-height: 260px;
+      padding: 58px 28px 31px;
+      border-bottom: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .tracking-intro h1 {
+      margin-top: 9px;
+    }
+
+    .tracking-intro > p {
+      margin: 0;
+      color: var(--muted);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 22px;
+      line-height: 1.08;
+      text-align: right;
+    }
+
+    .lookup-band {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .lookup-main {
+      padding: 55px max(28px, 8vw) 62px;
+      border-right: 1px solid var(--line);
+    }
+
+    .lookup-main h2,
+    .lookup-aside h2 {
+      margin: 7px 0 13px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 39px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .lookup-copy {
+      max-width: 540px;
+      margin: 0 0 31px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .tracking-form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 13px;
+      width: min(100%, 780px);
+    }
+
+    .tracking-form .primary-button {
+      min-width: 150px;
+    }
+
+    .lookup-error {
+      width: min(100%, 780px);
+      margin: 16px 0 0;
+      padding: 13px 15px;
+      border-left: 2px solid var(--oxblood);
+      color: var(--oxblood);
+      background: var(--chalk);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .lookup-error[hidden] {
+      display: none;
+    }
+
+    .lookup-aside {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 55px 35px;
+      background: var(--blue);
+    }
+
+    .lookup-aside p:not(.eyebrow) {
+      max-width: 370px;
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .lookup-aside-links {
+      display: grid;
+      gap: 12px;
+      margin-top: 55px;
+    }
+
+    .lookup-aside-links a {
+      display: flex;
+      justify-content: space-between;
+      padding: 13px 0;
+      border-top: 1px solid rgba(17, 17, 15, 0.28);
+      font-size: 12px;
+    }
+
+    .tracking-result {
+      background: var(--chalk);
+    }
+
+    .tracking-result[hidden] {
+      display: none;
+    }
+
+    .result-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 30px;
+      padding: 43px 28px 27px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .result-head h2 {
+      margin: 5px 0 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 45px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .result-status {
+      margin: 0;
+      color: var(--green);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .progress-wrap {
+      padding: 37px 28px 44px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .delivery-summary {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 37px;
+    }
+
+    .delivery-summary h3,
+    .delivery-summary p {
+      margin: 0;
+    }
+
+    .delivery-summary h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 30px;
+      font-weight: 500;
+    }
+
+    .delivery-summary p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .order-progress {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .order-progress li {
+      position: relative;
+      min-height: 72px;
+      padding: 20px 18px 0 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .order-progress li::before {
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--line);
+      content: "";
+    }
+
+    .order-progress li.complete,
+    .order-progress li.current {
+      color: var(--ink);
+      border-top-color: var(--green);
+    }
+
+    .order-progress li.complete::before,
+    .order-progress li.current::before {
+      background: var(--green);
+    }
+
+    .order-progress strong,
+    .order-progress span {
+      display: block;
+    }
+
+    .order-progress strong {
+      margin-bottom: 5px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .order-progress span {
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .order-breakdown {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.6fr);
+      min-height: 390px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .order-pieces,
+    .delivery-detail {
+      padding: 35px 28px 48px;
+    }
+
+    .order-pieces {
+      border-right: 1px solid var(--line);
+    }
+
+    .subsection-title {
+      margin: 0 0 23px;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .tracking-items {
+      border-top: 1px solid var(--line);
+    }
+
+    .tracking-item {
+      display: grid;
+      grid-template-columns: 90px minmax(0, 1fr) auto;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tracking-item img {
+      aspect-ratio: 4 / 5;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .tracking-item h4,
+    .tracking-item p {
+      margin: 0;
+      font-size: 12px;
+    }
+
+    .tracking-item h4 {
+      margin: 3px 0 6px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .tracking-item-meta {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .tracking-item-price {
+      white-space: nowrap;
+    }
+
+    .delivery-detail dl {
+      margin: 0;
+    }
+
+    .delivery-detail dl div {
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .delivery-detail dt {
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .delivery-detail dd {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .delivery-detail dd[data-result-address] {
+      white-space: pre-line;
+    }
+
+    @media (max-width: 900px) {
+      .tracking-form {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .tracking-form .primary-button {
+        grid-column: 1 / -1;
+      }
+
+      .order-breakdown {
+        grid-template-columns: minmax(0, 1.2fr) minmax(250px, 0.8fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .tracking-intro {
+        display: block;
+        min-height: 220px;
+        padding: 42px 14px 23px;
+      }
+
+      .tracking-intro > p {
+        max-width: 330px;
+        margin-top: 26px;
+        font-size: 18px;
+        text-align: left;
+      }
+
+      .lookup-band,
+      .order-breakdown {
+        display: block;
+      }
+
+      .lookup-main,
+      .lookup-aside,
+      .order-pieces,
+      .delivery-detail {
+        padding: 38px 14px 45px;
+      }
+
+      .lookup-main,
+      .order-pieces {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .lookup-main h2,
+      .lookup-aside h2 {
+        font-size: 34px;
+      }
+
+      .tracking-form {
+        grid-template-columns: 1fr;
+      }
+
+      .tracking-form .primary-button {
+        grid-column: auto;
+      }
+
+      .lookup-aside-links {
+        margin-top: 38px;
+      }
+
+      .result-head {
+        display: block;
+        padding: 35px 14px 23px;
+      }
+
+      .result-head h2 {
+        font-size: 37px;
+      }
+
+      .result-status {
+        margin-top: 18px;
+      }
+
+      .progress-wrap {
+        padding: 31px 14px 38px;
+      }
+
+      .delivery-summary {
+        display: block;
+      }
+
+      .delivery-summary p {
+        margin-top: 9px;
+      }
+
+      .order-progress {
+        display: block;
+        padding-left: 8px;
+      }
+
+      .order-progress li {
+        min-height: 74px;
+        padding: 0 0 24px 25px;
+        border-top: 0;
+        border-left: 1px solid var(--line);
+      }
+
+      .order-progress li::before {
+        top: 1px;
+        left: -5px;
+      }
+
+      .order-progress li.complete,
+      .order-progress li.current {
+        border-left-color: var(--green);
+      }
+
+      .tracking-item {
+        grid-template-columns: 74px minmax(0, 1fr) auto;
+        gap: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div data-rone-header></div>
+
+  <main class="tracking-page">
+    <section class="tracking-intro" aria-labelledby="tracking-title">
+      <div><p class="eyebrow">Orders and delivery</p><h1 class="display-heading" id="tracking-title">Track an order.</h1></div>
+      <p>Follow each stage from the Rone studio to your door.</p>
+    </section>
+
+    <section class="lookup-band" aria-labelledby="lookup-title">
+      <div class="lookup-main">
+        <p class="eyebrow">Order lookup</p>
+        <h2 id="lookup-title">Where is your order?</h2>
+        <p class="lookup-copy">Enter the order number from your confirmation email and the email address used at checkout.</p>
+        <form class="tracking-form" data-tracking-form>
+          <label class="field"><span>Order number</span><input type="text" name="order" placeholder="RNE-482610" autocomplete="off" required></label>
+          <label class="field"><span>Email address</span><input type="email" name="email" placeholder="alex@example.com" autocomplete="email" required></label>
+          <button class="primary-button" type="submit">Track order</button>
+        </form>
+        <p class="lookup-error" data-lookup-error role="alert" hidden></p>
+      </div>
+      <aside class="lookup-aside">
+        <div><p class="eyebrow">Need a hand?</p><h2>Client care.</h2><p>Our team can help with delivery changes, return questions and anything that needs a closer look.</p></div>
+        <div class="lookup-aside-links"><a href="rone-care-v1.html#contact"><span>Contact Rone</span><span aria-hidden="true">&#8594;</span></a><a href="rone-care-v1.html#delivery"><span>Delivery and returns</span><span aria-hidden="true">&#8594;</span></a></div>
+      </aside>
+    </section>
+
+    <section class="tracking-result" data-tracking-result hidden aria-labelledby="tracking-result-title">
+      <div class="result-head"><div><p class="eyebrow">Order <span data-result-order>RNE-482610</span></p><h2 id="tracking-result-title">Your order is on its way.</h2></div><p class="result-status" data-result-status>In transit</p></div>
+      <div class="progress-wrap">
+        <div class="delivery-summary"><h3 data-result-eta>Expected Wednesday, August 19</h3><p data-result-update>Last update: August 17, 10:42 AM</p></div>
+        <ol class="order-progress" data-order-progress></ol>
+      </div>
+      <div class="order-breakdown">
+        <section class="order-pieces" aria-labelledby="order-pieces-title"><h3 class="subsection-title" id="order-pieces-title">Pieces in this order</h3><div class="tracking-items" data-tracking-items></div></section>
+        <section class="delivery-detail" aria-labelledby="delivery-detail-title"><h3 class="subsection-title" id="delivery-detail-title">Delivery detail</h3><dl><div><dt>Destination</dt><dd data-result-address></dd></div><div><dt>Delivery service</dt><dd data-result-service></dd></div><div><dt>Carrier reference</dt><dd data-result-reference></dd></div><div><dt>Order total</dt><dd data-result-total></dd></div></dl></section>
+      </div>
+    </section>
+
+    <section class="service-strip" aria-label="Rone services">
+      <div class="service-item"><p class="eyebrow">01 / Delivery</p><p>Complimentary delivery above <span data-money-usd="500">$500</span>.</p></div>
+      <div class="service-item"><p class="eyebrow">02 / Returns</p><p>Thirty days to consider every piece.</p></div>
+      <div class="service-item"><p class="eyebrow">03 / Care</p><p>Support before, during and after delivery.</p></div>
+    </section>
+  </main>
+
+  <div data-rone-footer></div>
+  <script src="rone-data.js"></script>
+  <script src="rone-shell.js"></script>
+  <script>
+    const trackingCatalog = new Map(window.RONE_CATALOG.map((product) => [product.slug, product]));
+    const trackingOrders = {
+      "RNE-482610": {
+        email: "alex@example.com",
+        status: "In transit",
+        heading: "Your order is on its way.",
+        eta: "Expected Wednesday, August 19",
+        update: "Last update: August 17, 10:42 AM",
+        step: 2,
+        service: "Express delivery / 1-2 business days",
+        reference: "RNE482610US",
+        address: "Alex Morgan\n44 Mercer Street\nNew York, NY 10013\nUnited States",
+        total: 1265,
+        items: [{ slug: "fold-leather-tote", colour: "Cacao", size: "One size", quantity: 1 }, { slug: "moss-merino-crew", colour: "Field olive", size: "M", quantity: 1 }]
+      },
+      "RNE-451922": {
+        email: "alex@example.com",
+        status: "Delivered",
+        heading: "Your order has arrived.",
+        eta: "Delivered Tuesday, June 2",
+        update: "Delivered at 2:16 PM",
+        step: 3,
+        service: "Standard delivery / 3-5 business days",
+        reference: "RNE451922US",
+        address: "Alex Morgan\n44 Mercer Street\nNew York, NY 10013\nUnited States",
+        total: 520,
+        items: [{ slug: "soft-step-loafer", colour: "Tobacco suede", size: "41", quantity: 1 }]
+      }
+    };
+
+    function loadLastOrder() {
+      try {
+        const order = JSON.parse(localStorage.getItem("roneLastOrderV1") || "null");
+        if (!order?.number || !order?.email || !Array.isArray(order.items)) return;
+        trackingOrders[String(order.number).toUpperCase()] = {
+          email: String(order.email).toLowerCase(),
+          status: "Order received",
+          heading: "We have received your order.",
+          eta: order.eta || "Estimated in 3-5 business days",
+          update: "Confirmation received just now",
+          step: 0,
+          service: order.service || "Standard delivery / 3-5 business days",
+          reference: "Preparing carrier reference",
+          address: order.address || "Delivery address confirmed",
+          total: Number(order.total) || 0,
+          items: order.items
+        };
+      } catch (error) { /* Stored checkout data is optional. */ }
+    }
+
+    function normalizeOrder(value) {
+      const compact = String(value).trim().toUpperCase().replace(/\s+/g, "");
+      if (/^RNE\d{6}$/.test(compact)) return compact.replace("RNE", "RNE-");
+      return compact;
+    }
+
+    function renderProgress(step) {
+      const stages = [
+        ["Order received", "August 12"],
+        ["Prepared", "August 14"],
+        ["In transit", "August 16"],
+        ["Delivered", step === 3 ? "June 2" : "Pending"]
+      ];
+      document.querySelector("[data-order-progress]").innerHTML = stages.map(([label, date], index) => `<li class="${index < step ? "complete" : index === step ? "current" : ""}" ${index === step ? 'aria-current="step"' : ""}><strong>${label}</strong><span>${date}</span></li>`).join("");
+    }
+
+    function showOrder(number, order) {
+      document.querySelector("[data-result-order]").textContent = number;
+      document.querySelector("[data-result-status]").textContent = order.status;
+      document.querySelector("[data-result-eta]").textContent = order.eta;
+      document.querySelector("[data-result-update]").textContent = order.update;
+      document.querySelector("[data-result-address]").textContent = order.address;
+      document.querySelector("[data-result-service]").textContent = order.service;
+      document.querySelector("[data-result-reference]").textContent = order.reference;
+      const resultTotal = document.querySelector("[data-result-total]");
+      resultTotal.dataset.moneyUsd = order.total;
+      resultTotal.textContent = window.RONE_MONEY.format(order.total);
+      document.querySelector("[data-tracking-result] h2").textContent = order.heading;
+      document.querySelector("[data-tracking-items]").innerHTML = order.items.map((item) => {
+        const product = trackingCatalog.get(item.slug);
+        if (!product) return "";
+        const itemTotal = product.price * (item.quantity || 1);
+        return `<article class="tracking-item"><img src="${product.primary}" alt="${product.name}"><div><h4>${product.name}</h4><p class="tracking-item-meta">${item.colour || product.colour} / ${item.size || "One size"}<br>Quantity ${item.quantity || 1}</p></div><p class="tracking-item-price" data-money-usd="${itemTotal}">${window.RONE_MONEY.format(itemTotal)}</p></article>`;
+      }).join("");
+      renderProgress(order.step);
+      document.querySelector("[data-tracking-result]").hidden = false;
+      document.querySelector("[data-lookup-error]").hidden = true;
+      const url = new URL(window.location.href);
+      url.searchParams.set("order", number);
+      history.replaceState({}, "", url);
+      document.querySelector("[data-tracking-result]").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function lookup(form) {
+      const data = new FormData(form);
+      const number = normalizeOrder(data.get("order"));
+      const email = String(data.get("email")).trim().toLowerCase();
+      const order = trackingOrders[number];
+      if (!order || order.email !== email) {
+        const error = document.querySelector("[data-lookup-error]");
+        error.textContent = "We could not match that order number and email address. Check both details or contact client care.";
+        error.hidden = false;
+        document.querySelector("[data-tracking-result]").hidden = true;
+        error.focus?.();
+        return;
+      }
+      showOrder(number, order);
+    }
+
+    loadLastOrder();
+    const trackingForm = document.querySelector("[data-tracking-form]");
+    trackingForm.addEventListener("submit", (event) => { event.preventDefault(); if (trackingForm.checkValidity()) lookup(trackingForm); else trackingForm.reportValidity(); });
+    const params = new URLSearchParams(window.location.search);
+    const requestedOrder = normalizeOrder(params.get("order") || "");
+    if (requestedOrder && trackingOrders[requestedOrder]) {
+      trackingForm.elements.order.value = requestedOrder;
+      trackingForm.elements.email.value = params.get("email") || trackingOrders[requestedOrder].email;
+      showOrder(requestedOrder, trackingOrders[requestedOrder]);
+    }
+    window.__RONE_TRACKING_READY__ = true;
+  </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Review the Rone pieces you have saved for later.">
+  <title>Saved Pieces - Rone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;family=DM+Mono:wght@300;400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="rone-pages.css">
+  <link rel="stylesheet" href="rone-currency.css">
+  <script src="rone-currency.js"></script>
+  <style>
+    .saved-page {
+      min-height: 70vh;
+      background: var(--paper);
+    }
+
+    .saved-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+      align-items: end;
+      gap: 45px;
+      min-height: 260px;
+      padding: 58px 28px 31px;
+      border-bottom: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .saved-intro h1 {
+      margin-top: 9px;
+    }
+
+    .saved-intro-copy {
+      margin: 0;
+      color: var(--muted);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 22px;
+      line-height: 1.08;
+      text-align: right;
+    }
+
+    .saved-toolbar {
+      position: sticky;
+      z-index: 20;
+      top: calc(var(--announcement-height) + var(--header-height));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 54px;
+      padding: 0 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(250, 250, 247, 0.97);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .saved-toolbar a {
+      padding-bottom: 2px;
+      border-bottom: 1px solid currentColor;
+    }
+
+    .saved-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-left: 1px solid var(--line);
+    }
+
+    .saved-card {
+      position: relative;
+      min-width: 0;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .saved-media {
+      position: relative;
+      display: block;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #e7e6e1;
+    }
+
+    .saved-media img {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 360ms ease, transform 520ms ease;
+    }
+
+    .saved-media img:last-child {
+      opacity: 0;
+    }
+
+    .saved-media:hover img:first-child,
+    .saved-media:focus-visible img:first-child {
+      opacity: 0;
+      transform: scale(1.015);
+    }
+
+    .saved-media:hover img:last-child,
+    .saved-media:focus-visible img:last-child {
+      opacity: 1;
+      transform: scale(1.015);
+    }
+
+    .saved-remove {
+      position: absolute;
+      z-index: 2;
+      top: 11px;
+      right: 11px;
+      min-width: 46px;
+      min-height: 36px;
+      padding: 0 10px;
+      border: 1px solid rgba(17, 17, 15, 0.24);
+      border-radius: 0;
+      background: rgba(250, 250, 247, 0.94);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .saved-remove:hover {
+      color: var(--white);
+      background: var(--ink);
+    }
+
+    .saved-card-body {
+      min-height: 132px;
+      padding: 14px 13px 16px;
+    }
+
+    .saved-card-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+    }
+
+    .saved-card h2,
+    .saved-card p {
+      margin: 0;
+      font-size: 12px;
+    }
+
+    .saved-card h2 {
+      font-weight: 500;
+    }
+
+    .saved-card-meta {
+      margin-top: 5px !important;
+      color: var(--muted);
+      font-size: 12px !important;
+    }
+
+    .saved-view {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 26px;
+      padding-top: 10px;
+      border-top: 1px solid var(--soft-line);
+      font-size: 12px;
+    }
+
+    .saved-empty {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+      min-height: 560px;
+      border-bottom: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .saved-empty[hidden],
+    .saved-grid[hidden] {
+      display: none;
+    }
+
+    .saved-empty-copy {
+      align-self: center;
+      width: min(100%, 590px);
+      padding: 55px 8vw;
+    }
+
+    .saved-empty h2 {
+      margin: 8px 0 15px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 48px;
+      font-weight: 500;
+      line-height: 0.98;
+    }
+
+    .saved-empty p:last-of-type {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .saved-empty-image {
+      overflow: hidden;
+      border-left: 1px solid var(--line);
+    }
+
+    .saved-empty-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .recommendation {
+      background: var(--chalk);
+    }
+
+    .recommendation .catalog-grid {
+      background: var(--paper);
+    }
+
+    @media (max-width: 1080px) {
+      .saved-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .saved-intro {
+        display: block;
+        min-height: 215px;
+        padding: 42px 14px 23px;
+      }
+
+      .saved-intro-copy {
+        max-width: 320px;
+        margin-top: 26px;
+        font-size: 18px;
+        text-align: left;
+      }
+
+      .saved-toolbar {
+        min-height: 50px;
+        padding: 0 13px;
+      }
+
+      .saved-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .saved-card-body {
+        min-height: 145px;
+        padding: 11px 10px 14px;
+      }
+
+      .saved-card-heading {
+        display: block;
+      }
+
+      .saved-card-heading > p {
+        margin-top: 4px;
+      }
+
+      .saved-remove {
+        top: 8px;
+        right: 8px;
+        min-width: 44px;
+        min-height: 38px;
+      }
+
+      .saved-empty {
+        display: block;
+        min-height: 0;
+      }
+
+      .saved-empty-copy {
+        min-height: 360px;
+        padding: 70px 17px;
+      }
+
+      .saved-empty h2 {
+        font-size: 39px;
+      }
+
+      .saved-empty-image {
+        height: 55svh;
+        min-height: 380px;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div data-rone-header></div>
+
+  <main class="saved-page">
+    <section class="saved-intro" aria-labelledby="saved-title">
+      <div><p class="eyebrow">Your edit</p><h1 class="display-heading" id="saved-title">Saved pieces.</h1></div>
+      <p class="saved-intro-copy">Keep a considered shortlist, then return when the moment is right.</p>
+    </section>
+
+    <div class="saved-toolbar"><span data-saved-count>0 pieces</span><a href="rone-shop-v1.html">Continue shopping</a></div>
+    <section class="saved-grid" data-saved-grid aria-label="Saved Rone pieces"></section>
+
+    <section class="saved-empty" data-saved-empty hidden aria-labelledby="saved-empty-title">
+      <div class="saved-empty-copy"><p class="eyebrow">Your edit is clear</p><h2 id="saved-empty-title">Nothing saved yet.</h2><p>Use Save piece from any product view to keep a private shortlist here.</p><a class="primary-button" href="rone-shop-v1.html?sort=newest">Explore new arrivals</a></div>
+      <div class="saved-empty-image"><img src="https://images.pexels.com/photos/13169319/pexels-photo-13169319.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Relaxed Rone tailoring styled outdoors"></div>
+    </section>
+
+    <section class="recommendation" aria-labelledby="recommendation-title">
+      <div class="section-header"><div><p class="eyebrow">Continue the edit</p><h2 class="section-heading" id="recommendation-title">You may also consider</h2></div><p>New forms chosen from the current assembly.</p></div>
+      <div class="catalog-grid" data-recommendations></div>
+    </section>
+
+    <section class="service-strip" aria-label="Rone services">
+      <div class="service-item"><p class="eyebrow">01 / Delivery</p><p>Complimentary delivery above <span data-money-usd="500">$500</span>.</p></div>
+      <div class="service-item"><p class="eyebrow">02 / Returns</p><p>Thirty days to consider every piece.</p></div>
+      <div class="service-item"><p class="eyebrow">03 / Client care</p><p>Personal support before and after purchase.</p></div>
+    </section>
+  </main>
+
+  <div data-rone-footer></div>
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+  <script src="rone-data.js"></script>
+  <script src="rone-shell.js"></script>
+  <script>
+    const savedFallback = ["fold-leather-tote", "house-blazer", "soft-step-loafer", "fine-rib-singlet"];
+    const savedCatalog = window.RONE_CATALOG;
+    let savedSlugs = loadSaved();
+    let toastTimer;
+
+    function loadSaved() {
+      try {
+        const raw = localStorage.getItem("roneSavedV1");
+        if (raw === null) {
+          localStorage.setItem("roneSavedV1", JSON.stringify(savedFallback));
+          return [...savedFallback];
+        }
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return parsed.filter((slug) => savedCatalog.some((product) => product.slug === slug));
+      } catch (error) { /* The review state remains available without storage. */ }
+      return [...savedFallback];
+    }
+
+    function persistSaved() {
+      try { localStorage.setItem("roneSavedV1", JSON.stringify(savedSlugs)); } catch (error) { /* Storage is optional for the prototype. */ }
+      window.dispatchEvent(new Event("rone:saved-change"));
+    }
+
+    function productUrl(slug) {
+      return `rone-shop-v1.html?state=product&product=${encodeURIComponent(slug)}`;
+    }
+
+    function productCard(product, removable = false) {
+      const media = `${product.flag ? `<span class="catalog-flag">${product.flag}</span>` : ""}<img src="${product.primary}" alt="${product.name} in ${product.colour}" loading="lazy"><img src="${product.worn}" alt="${product.name} styled on a person" loading="lazy">`;
+      if (!removable) return `<article class="catalog-card"><a href="${productUrl(product.slug)}" aria-label="View ${product.name}"><span class="catalog-media">${media}</span><span class="catalog-meta"><span>${product.name}</span><span data-money-usd="${product.price}">${window.RONE_MONEY.format(product.price)}</span><span>${product.colour} / ${product.gender}</span></span></a></article>`;
+      return `<article class="saved-card"><a class="saved-media" href="${productUrl(product.slug)}" aria-label="View ${product.name}">${media}</a><button class="saved-remove" type="button" data-remove-saved="${product.slug}" aria-label="Remove ${product.name} from saved pieces">Remove</button><div class="saved-card-body"><div class="saved-card-heading"><h2>${product.name}</h2><p data-money-usd="${product.price}">${window.RONE_MONEY.format(product.price)}</p></div><p class="saved-card-meta">${product.colour} / ${product.gender}</p><a class="saved-view" href="${productUrl(product.slug)}"><span>View piece</span><span aria-hidden="true">&#8594;</span></a></div></article>`;
+    }
+
+    function showToast(message) {
+      const toast = document.querySelector("[data-toast]");
+      toast.textContent = message;
+      toast.classList.add("visible");
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => toast.classList.remove("visible"), 2200);
+    }
+
+    function renderSaved() {
+      const products = savedSlugs.map((slug) => savedCatalog.find((product) => product.slug === slug)).filter(Boolean);
+      const grid = document.querySelector("[data-saved-grid]");
+      const empty = document.querySelector("[data-saved-empty]");
+      grid.innerHTML = products.map((product) => productCard(product, true)).join("");
+      grid.hidden = products.length === 0;
+      empty.hidden = products.length !== 0;
+      document.querySelector("[data-saved-count]").textContent = `${products.length} ${products.length === 1 ? "piece" : "pieces"}`;
+      const recommendations = savedCatalog.filter((product) => !savedSlugs.includes(product.slug)).slice(0, 4);
+      document.querySelector("[data-recommendations]").innerHTML = recommendations.map((product) => productCard(product)).join("");
+    }
+
+    document.querySelector("[data-saved-grid]").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-remove-saved]");
+      if (!button) return;
+      const product = savedCatalog.find((item) => item.slug === button.dataset.removeSaved);
+      savedSlugs = savedSlugs.filter((slug) => slug !== button.dataset.removeSaved);
+      persistSaved();
+      renderSaved();
+      showToast(`${product?.name || "Piece"} removed from your edit.`);
+    });
+
+    renderSaved();
+    window.__RONE_SAVED_READY__ = true;
+  </script>
+</body>
+</html>

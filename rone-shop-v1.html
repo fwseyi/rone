@@ -1,0 +1,3564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop Rone unisex clothing, bags, shoes and considered essentials.">
+  <title>Shop Rone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;family=DM+Mono:wght@300;400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="rone-currency.css">
+  <script src="rone-currency.js"></script>
+  <style>
+    :root {
+      --chalk: #f2f2ed;
+      --paper: #fafaf7;
+      --white: #ffffff;
+      --ink: #11110f;
+      --muted: #65645f;
+      --line: #cbc9c2;
+      --soft-line: #dfddd7;
+      --green: #164735;
+      --oxblood: #85273a;
+      --blue: #c8d5dc;
+      --announcement-height: 30px;
+      --header-height: 72px;
+      --toolbar-height: 53px;
+    }
+
+    * {
+      box-sizing: border-box;
+      letter-spacing: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--chalk);
+      font-family: "DM Sans", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    #main-content {
+      padding-top: calc(var(--announcement-height) + var(--header-height));
+    }
+
+    button,
+    input,
+    select {
+      color: inherit;
+      font: inherit;
+    }
+
+    button,
+    a,
+    select {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      border: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .eyebrow {
+      margin: 0;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .announcement {
+      position: fixed;
+      z-index: 40;
+      top: 0;
+      right: 0;
+      left: 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 24px;
+      color: var(--white);
+      background: var(--oxblood);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .announcement p {
+      grid-column: 2;
+      margin: 0;
+    }
+
+    .announcement a {
+      justify-self: end;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 35;
+      top: var(--announcement-height);
+      right: 0;
+      left: 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      height: var(--header-height);
+      padding: 0 28px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(250, 250, 247, 0.98);
+    }
+
+    .nav-preview {
+      position: fixed;
+      z-index: 34;
+      top: calc(var(--announcement-height) + var(--header-height));
+      right: 0;
+      left: 0;
+      visibility: hidden;
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 18px 34px rgba(17, 17, 15, 0.1);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity 180ms ease, transform 220ms ease, visibility 0s linear 220ms;
+    }
+
+    .nav-preview.open {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      transition-delay: 0s;
+    }
+
+    .nav-preview-panel {
+      display: none;
+      grid-template-columns: 0.85fr 1fr 1fr 1.45fr;
+      min-height: 350px;
+    }
+
+    .nav-preview-panel.active {
+      display: grid;
+    }
+
+    .nav-preview-column {
+      padding: 29px 28px 34px;
+      border-right: 1px solid var(--line);
+    }
+
+    .nav-preview-column .eyebrow {
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .nav-preview-column a {
+      display: table;
+      margin: 0 0 9px;
+      font-size: 12px;
+    }
+
+    .nav-preview-column a:hover,
+    .nav-preview-column a:focus-visible {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .nav-preview-lead a {
+      margin-bottom: 8px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px;
+      line-height: 1.05;
+    }
+
+    .nav-preview-visual {
+      position: relative;
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      background: var(--blue);
+    }
+
+    .nav-preview-visual img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav-preview-visual figcaption {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      color: var(--white);
+      background: rgba(17, 17, 15, 0.7);
+      font-size: 12px;
+    }
+
+    .nav-group {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 12px;
+    }
+
+    .nav-group.right {
+      justify-content: flex-end;
+    }
+
+    .nav-link,
+    .nav-action {
+      position: relative;
+      padding: 5px 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .nav-link::after,
+    .nav-action::after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 180ms ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-action:hover::after,
+    .nav-link:focus-visible::after,
+    .nav-action:focus-visible::after,
+    .nav-link[aria-current="page"]::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .wordmark {
+      display: inline-block;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 38px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .bag-count {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mobile-control {
+      display: none;
+    }
+
+    .shop-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      min-height: 238px;
+      padding: 64px 28px 28px;
+      border-bottom: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .shop-intro h1 {
+      max-width: 920px;
+      margin: 8px 0 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 70px;
+      font-weight: 500;
+      line-height: 0.92;
+    }
+
+    .shop-intro p:last-child {
+      max-width: 320px;
+      margin: 0;
+      color: var(--muted);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 22px;
+      line-height: 1.05;
+    }
+
+    .category-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      min-height: 58px;
+      padding: 0 18px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+      scrollbar-width: none;
+    }
+
+    .category-nav::-webkit-scrollbar,
+    .subcategory-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      gap: 8px;
+      min-height: 57px;
+      padding: 0;
+      background: transparent;
+      font-size: 12px;
+      text-align: left;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: color 160ms ease;
+    }
+
+    .category-button span:last-child {
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+    }
+
+    .category-button:hover,
+    .category-button[aria-pressed="true"] {
+      color: var(--green);
+    }
+
+    .category-button::after {
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      left: 0;
+      height: 2px;
+      content: "";
+      background: var(--green);
+      transform: scaleX(0);
+      transition: transform 160ms ease;
+    }
+
+    .category-button:hover::after,
+    .category-button[aria-pressed="true"]::after {
+      transform: scaleX(1);
+    }
+
+    .subcategory-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      min-height: 45px;
+      padding: 0 18px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--line);
+      background: var(--blue);
+      scrollbar-width: none;
+    }
+
+    .subcategory-nav[hidden] {
+      display: none;
+    }
+
+    .subcategory-button {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      gap: 7px;
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+      background: transparent;
+      font-size: 12px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .subcategory-button span {
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+    }
+
+    .subcategory-button:hover,
+    .subcategory-button[aria-pressed="true"] {
+      border-bottom-color: currentColor;
+    }
+
+    .catalog-group-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 108px;
+      padding: 26px 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--chalk);
+    }
+
+    .catalog-group-head h3 {
+      margin: 3px 0 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 0.95;
+    }
+
+    .catalog-group-head p {
+      margin: 0;
+    }
+
+    .catalog-group-head .group-copy {
+      max-width: 320px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .catalog-group + .catalog-group .catalog-group-head {
+      border-top: 1px solid var(--line);
+    }
+
+    .catalog-toolbar {
+      position: sticky;
+      z-index: 25;
+      top: calc(var(--announcement-height) + var(--header-height));
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      min-height: var(--toolbar-height);
+      padding: 0 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(242, 242, 237, 0.97);
+      backdrop-filter: blur(8px);
+    }
+
+    .toolbar-button,
+    .sort-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 32px;
+      padding: 0;
+      background: transparent;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .toolbar-button .filter-mark {
+      position: relative;
+      width: 15px;
+      height: 12px;
+    }
+
+    .filter-mark::before,
+    .filter-mark::after {
+      position: absolute;
+      left: 0;
+      width: 15px;
+      height: 1px;
+      content: "";
+      background: currentColor;
+    }
+
+    .filter-mark::before {
+      top: 3px;
+      box-shadow: 5px 5px 0 -2px var(--chalk), 5px 5px 0 -1px currentColor;
+    }
+
+    .filter-mark::after {
+      bottom: 2px;
+      box-shadow: 4px -5px 0 -2px var(--chalk), 4px -5px 0 -1px currentColor;
+    }
+
+    .filter-badge {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      color: var(--white);
+      background: var(--green);
+      border-radius: 50%;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+    }
+
+    .filter-badge.visible {
+      display: inline-flex;
+    }
+
+    .catalog-count {
+      margin: 0;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .toolbar-end {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 21px;
+    }
+
+    .sort-control {
+      position: relative;
+    }
+
+    .sort-select-shell {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 32px;
+      padding-right: 14px;
+      white-space: nowrap;
+    }
+
+    .sort-select-shell::after {
+      position: absolute;
+      top: 50%;
+      right: 1px;
+      width: 6px;
+      height: 6px;
+      border-right: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+      content: "";
+      pointer-events: none;
+      transform: translateY(-70%) rotate(45deg);
+    }
+
+    .sort-select-shell:focus-within {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+
+    .sort-control select {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      outline: 0;
+      background: transparent;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .view-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .view-button,
+    .icon-button {
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .view-button {
+      position: relative;
+      opacity: 0.38;
+    }
+
+    .view-button::before {
+      width: 17px;
+      height: 14px;
+      content: "";
+      background-image: repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 5px);
+      border-right: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+      border-top: 1px solid currentColor;
+    }
+
+    .view-button[data-view="3"]::before {
+      background-size: 6px 100%;
+    }
+
+    .view-button[aria-pressed="true"] {
+      opacity: 1;
+    }
+
+    .catalog-empty {
+      display: none;
+      min-height: 380px;
+      padding: 90px 24px;
+      text-align: center;
+    }
+
+    .catalog-empty.visible {
+      display: block;
+    }
+
+    .catalog-empty h2 {
+      margin: 0 0 10px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 38px;
+      font-weight: 500;
+    }
+
+    .catalog-empty p {
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .text-button {
+      padding: 0 0 5px;
+      border-bottom: 1px solid currentColor;
+      background: transparent;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-left: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .product-grid[data-view="3"] {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .product-card {
+      min-width: 0;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .product-trigger {
+      display: block;
+      width: 100%;
+      padding: 0;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .product-media {
+      position: relative;
+      display: block;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #e7e6e1;
+    }
+
+    .product-media img {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 360ms ease, transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .product-media .product-primary {
+      opacity: 1;
+    }
+
+    .product-media .product-worn {
+      opacity: 0;
+    }
+
+    .product-trigger:hover .product-primary,
+    .product-trigger:focus-visible .product-primary,
+    .force-hover .product-card:first-child .product-primary {
+      opacity: 0;
+      transform: scale(1.015);
+    }
+
+    .product-trigger:hover .product-worn,
+    .product-trigger:focus-visible .product-worn,
+    .force-hover .product-card:first-child .product-worn {
+      opacity: 1;
+      transform: scale(1.015);
+    }
+
+    .product-flag {
+      position: absolute;
+      z-index: 2;
+      top: 12px;
+      left: 12px;
+      padding: 6px 7px 5px;
+      color: var(--ink);
+      background: rgba(250, 250, 247, 0.92);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .product-meta {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 5px 12px;
+      min-height: 84px;
+      padding: 13px 14px 15px;
+      font-size: 12px;
+    }
+
+    .product-name,
+    .product-price,
+    .product-color {
+      margin: 0;
+    }
+
+    .product-name {
+      overflow: hidden;
+      font-weight: 500;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .product-price {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .product-color {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .catalog-end {
+      display: grid;
+      place-items: center;
+      min-height: 118px;
+      padding: 28px;
+      border-bottom: 1px solid var(--line);
+      background: var(--chalk);
+      text-align: center;
+    }
+
+    .catalog-end p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .catalog-end a {
+      border-bottom: 1px solid currentColor;
+      font-size: 12px;
+    }
+
+    .service-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-bottom: 1px solid var(--line);
+      background: var(--blue);
+    }
+
+    .service-item {
+      min-height: 104px;
+      padding: 22px 24px;
+      border-right: 1px solid rgba(17, 17, 15, 0.22);
+    }
+
+    .service-item:last-child {
+      border-right: 0;
+    }
+
+    .service-item p:last-child {
+      max-width: 270px;
+      margin: 14px 0 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 18px;
+      line-height: 1.05;
+    }
+
+    .site-footer {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      min-height: 270px;
+      padding: 40px 28px;
+      color: var(--white);
+      background: var(--green);
+    }
+
+    .footer-wordmark {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 68px;
+      font-weight: 600;
+      line-height: 0.8;
+    }
+
+    .footer-column h2 {
+      margin: 0 0 18px;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .footer-column a {
+      display: block;
+      width: max-content;
+      margin: 0 0 9px;
+      font-size: 12px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 28px;
+      color: var(--white);
+      background: var(--green);
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .footer-policy-links {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0 7px;
+    }
+
+    .footer-policy-links a + a::before {
+      margin-right: 7px;
+      content: "/";
+    }
+
+    .layer {
+      position: fixed;
+      z-index: 70;
+      inset: 0;
+      visibility: hidden;
+      background: rgba(17, 17, 15, 0.42);
+      opacity: 0;
+      transition: opacity 220ms ease, visibility 0s linear 220ms;
+    }
+
+    .layer.open {
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
+    }
+
+    .drawer {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: 0 0 32px rgba(17, 17, 15, 0.13);
+      transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .drawer.right {
+      right: 0;
+      transform: translateX(100%);
+    }
+
+    .drawer.left {
+      left: 0;
+      transform: translateX(-100%);
+    }
+
+    .layer.open .drawer {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      min-height: 58px;
+      padding: 0 15px 0 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .drawer-header h2,
+    .drawer-header p {
+      grid-column: 2;
+      margin: 0;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .drawer-header .icon-button {
+      grid-column: 3;
+      justify-self: end;
+      font-size: 22px;
+      font-weight: 300;
+    }
+
+    .drawer-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .product-layer {
+      z-index: 90;
+      background: var(--paper);
+      transform: translateY(14px);
+      transition: opacity 260ms ease, transform 420ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 420ms;
+    }
+
+    .product-layer.open {
+      transform: translateY(0);
+      transition-delay: 0s;
+    }
+
+    .product-view {
+      display: grid;
+      grid-template-rows: 58px minmax(0, 1fr);
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .product-view-header {
+      position: relative;
+      z-index: 4;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .product-view-header .wordmark {
+      grid-column: 2;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .product-view-header .icon-button {
+      grid-column: 3;
+      justify-self: end;
+      font-size: 23px;
+    }
+
+    .product-back {
+      display: inline-flex;
+      grid-column: 1;
+      grid-row: 1;
+      align-items: center;
+      gap: 9px;
+      width: max-content;
+      padding: 8px 0;
+      background: transparent;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .product-back span:first-child {
+      font-size: 15px;
+    }
+
+    .product-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1.72fr) minmax(390px, 0.82fr);
+      min-height: 0;
+    }
+
+    .product-gallery-stage {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      border-right: 1px solid var(--line);
+      background: #ebeae6;
+    }
+
+    .product-gallery,
+    .product-gallery figure {
+      position: absolute;
+      inset: 0;
+    }
+
+    .product-gallery figure {
+      margin: 0;
+      visibility: hidden;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 360ms ease, visibility 0s linear 360ms;
+    }
+
+    .product-gallery figure.active {
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
+    }
+
+    .product-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .gallery-zoom-trigger {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      background: transparent;
+      cursor: zoom-in;
+    }
+
+    .gallery-zoom-trigger:focus-visible {
+      outline-color: var(--white);
+      outline-offset: -5px;
+    }
+
+    .gallery-arrow {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 1px solid rgba(17, 17, 15, 0.38);
+      border-radius: 50%;
+      background: rgba(250, 250, 247, 0.88);
+      font-size: 17px;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .gallery-arrow:hover {
+      color: var(--white);
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    .gallery-arrow.previous {
+      left: 18px;
+    }
+
+    .gallery-arrow.next {
+      right: 18px;
+    }
+
+    .gallery-footer {
+      position: absolute;
+      z-index: 2;
+      right: 20px;
+      bottom: 17px;
+      left: 20px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      color: var(--ink);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .gallery-footer > span {
+      grid-column: 3;
+      justify-self: end;
+      padding: 6px 7px;
+      background: rgba(250, 250, 247, 0.82);
+    }
+
+    .gallery-dots {
+      display: flex;
+      grid-column: 2;
+      gap: 10px;
+    }
+
+    .gallery-dot {
+      width: 7px;
+      height: 7px;
+      padding: 0;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      background: rgba(250, 250, 247, 0.82);
+      cursor: pointer;
+    }
+
+    .gallery-dot[aria-pressed="true"] {
+      background: var(--ink);
+    }
+
+    .image-viewer {
+      position: fixed;
+      z-index: 20;
+      inset: 0;
+      display: grid;
+      grid-template-rows: 64px minmax(0, 1fr) 54px;
+      color: var(--white);
+      background: #0d0d0c;
+    }
+
+    .image-viewer[hidden] {
+      display: none;
+    }
+
+    .image-viewer-header,
+    .image-viewer-footer {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 22px;
+      border-color: rgba(255, 255, 255, 0.22);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .image-viewer-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .image-viewer-header p {
+      grid-column: 2;
+      margin: 0;
+    }
+
+    .image-viewer-close {
+      display: grid;
+      grid-column: 3;
+      place-items: center;
+      justify-self: end;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      color: var(--white);
+      background: transparent;
+      font-family: Arial, sans-serif;
+      font-size: 34px;
+      font-weight: 300;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .image-viewer-stage {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 0;
+      padding: 22px 84px;
+      overflow: hidden;
+    }
+
+    .image-viewer-native {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      min-height: 0;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-in;
+      touch-action: pinch-zoom;
+    }
+
+    .image-viewer-stage img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+      cursor: zoom-in;
+      touch-action: pinch-zoom;
+    }
+
+    .image-viewer-arrow {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.56);
+      border-radius: 50%;
+      color: var(--white);
+      background: rgba(13, 13, 12, 0.5);
+      font-size: 18px;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .image-viewer-arrow:hover {
+      color: var(--ink);
+      background: var(--white);
+    }
+
+    .image-viewer-arrow.previous {
+      left: 22px;
+    }
+
+    .image-viewer-arrow.next {
+      right: 22px;
+    }
+
+    .image-viewer-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .image-viewer-footer span:first-child {
+      grid-column: 2;
+    }
+
+    .image-viewer-footer span:last-child {
+      grid-column: 3;
+      justify-self: end;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .product-purchase-scroll {
+      min-width: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      background: var(--paper);
+    }
+
+    .product-details {
+      width: min(100%, 470px);
+      margin: 0 auto;
+      padding: clamp(48px, 7vh, 92px) 38px 56px;
+    }
+
+    .product-kicker {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .product-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 18px;
+    }
+
+    .product-heading h2 {
+      margin: 0;
+      font-family: "DM Sans", sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.08;
+      text-transform: uppercase;
+    }
+
+    .drawer-price {
+      margin: 3px 0 0;
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .product-meta-line {
+      margin: 9px 0 34px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .product-description {
+      margin: 32px 0 0;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.45;
+      text-transform: uppercase;
+    }
+
+    .option-block {
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .colour-option {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .option-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 13px;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .option-label a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .swatch-list,
+    .size-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .swatch-button {
+      width: 29px;
+      height: 29px;
+      padding: 3px;
+      border: 1px solid transparent;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .swatch-button::after {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(17, 17, 15, 0.22);
+      border-radius: 50%;
+      background: var(--swatch);
+      content: "";
+    }
+
+    .swatch-button[aria-pressed="true"] {
+      border-color: var(--ink);
+    }
+
+    .size-button {
+      display: inline-grid;
+      place-items: center;
+      min-width: 48px;
+      height: 38px;
+      padding: 0 11px;
+      border: 1px solid var(--line);
+      background: transparent;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .size-button:hover,
+    .size-button[aria-pressed="true"] {
+      color: var(--white);
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+
+    .size-error {
+      display: none;
+      margin: 10px 0 0;
+      color: var(--oxblood);
+      font-size: 12px;
+    }
+
+    .size-error.visible {
+      display: block;
+    }
+
+    .primary-button,
+    .secondary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 50px;
+      padding: 0 18px;
+      border: 1px solid var(--ink);
+      border-radius: 0;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .primary-button {
+      color: var(--white);
+      background: var(--ink);
+    }
+
+    .primary-button:hover {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .product-add {
+      margin-top: 2px;
+      text-transform: uppercase;
+    }
+
+    .product-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
+      gap: 9px;
+      margin-top: 2px;
+    }
+
+    .product-actions .product-add {
+      margin-top: 0;
+    }
+
+    .product-save[aria-pressed="true"] {
+      color: var(--white);
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    .purchase-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .secondary-button {
+      background: transparent;
+    }
+
+    .primary-button:disabled,
+    .secondary-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.42;
+    }
+
+    .detail-list {
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .detail-list details {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .detail-list summary {
+      position: relative;
+      padding: 17px 28px 17px 0;
+      list-style: none;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .detail-list summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .detail-list summary::after {
+      position: absolute;
+      top: 13px;
+      right: 2px;
+      content: "+";
+      font-family: "DM Sans", sans-serif;
+      font-size: 18px;
+    }
+
+    .detail-list details[open] summary::after {
+      content: "-";
+    }
+
+    .detail-list details p {
+      max-width: 420px;
+      margin: 0;
+      padding: 0 30px 18px 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .filter-drawer {
+      width: min(430px, 100vw);
+    }
+
+    .filter-section {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .filter-section summary {
+      position: relative;
+      padding: 20px 45px 20px 22px;
+      list-style: none;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .filter-section summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .filter-section summary::after {
+      position: absolute;
+      top: 14px;
+      right: 21px;
+      content: "+";
+      font-family: "DM Sans", sans-serif;
+      font-size: 20px;
+    }
+
+    .filter-section[open] summary::after {
+      content: "-";
+    }
+
+    .filter-options {
+      display: grid;
+      gap: 13px;
+      padding: 0 22px 21px;
+    }
+
+    .check-row {
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .check-row input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .check-box {
+      display: grid;
+      place-items: center;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .check-row input:checked + .check-box {
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+
+    .check-row input:checked + .check-box::after {
+      width: 6px;
+      height: 3px;
+      border-bottom: 1px solid var(--white);
+      border-left: 1px solid var(--white);
+      content: "";
+      transform: translateY(-1px) rotate(-45deg);
+    }
+
+    .check-row input:focus-visible + .check-box {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+
+    .check-row span:nth-child(3) {
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+    }
+
+    .filter-actions {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 8px;
+      padding: 14px;
+      border-top: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .bag-drawer {
+      width: min(500px, 100vw);
+    }
+
+    .bag-empty {
+      display: grid;
+      place-items: center;
+      min-height: 100%;
+      padding: 42px;
+      text-align: center;
+    }
+
+    .bag-empty h3 {
+      margin: 0 0 9px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 35px;
+      font-weight: 500;
+    }
+
+    .bag-empty p {
+      max-width: 280px;
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .bag-items {
+      padding: 0 20px;
+    }
+
+    .bag-item {
+      display: grid;
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .bag-item-image {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #e8e6e1;
+    }
+
+    .bag-item-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bag-item-body {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .bag-item-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+    }
+
+    .bag-item-head h3,
+    .bag-item-head p,
+    .bag-item-meta {
+      margin: 0;
+      font-size: 12px;
+    }
+
+    .bag-item-head h3 {
+      overflow: hidden;
+      font-weight: 500;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .bag-item-head p {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bag-item-meta {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .bag-item-controls {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .quantity-control {
+      display: grid;
+      grid-template-columns: 32px 34px 32px;
+      height: 32px;
+      border: 1px solid var(--line);
+    }
+
+    .quantity-control button,
+    .quantity-control span {
+      display: grid;
+      place-items: center;
+      padding: 0;
+      background: transparent;
+      font-size: 12px;
+    }
+
+    .quantity-control button {
+      cursor: pointer;
+    }
+
+    .remove-button {
+      padding: 0 0 3px;
+      border-bottom: 1px solid currentColor;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .bag-summary {
+      padding: 17px 20px 20px;
+      border-top: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .delivery-message {
+      margin: 0 0 9px;
+      font-size: 12px;
+    }
+
+    .delivery-track {
+      height: 2px;
+      margin-bottom: 22px;
+      overflow: hidden;
+      background: var(--line);
+    }
+
+    .delivery-progress {
+      width: 0;
+      height: 100%;
+      background: var(--green);
+      transition: width 260ms ease;
+    }
+
+    .subtotal {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 0 6px;
+      font-weight: 500;
+    }
+
+    .tax-note {
+      margin: 0 0 17px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .search-layer {
+      z-index: 75;
+      background: var(--paper);
+      transform: translateY(-12px);
+      transition: opacity 220ms ease, visibility 0s linear 220ms, transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .search-layer.open {
+      transform: translateY(0);
+    }
+
+    .search-head {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      min-height: 86px;
+      padding: 0 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .search-head .wordmark {
+      width: 170px;
+    }
+
+    .search-field {
+      position: relative;
+      width: min(720px, 100%);
+      justify-self: center;
+    }
+
+    .search-field::before {
+      position: absolute;
+      top: 18px;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      content: "";
+    }
+
+    .search-field::after {
+      position: absolute;
+      top: 32px;
+      left: 13px;
+      width: 7px;
+      height: 1px;
+      content: "";
+      background: currentColor;
+      transform: rotate(45deg);
+      transform-origin: left;
+    }
+
+    .search-field input {
+      width: 100%;
+      height: 52px;
+      padding: 0 10px 0 28px;
+      border: 0;
+      border-bottom: 1px solid var(--ink);
+      border-radius: 0;
+      outline: 0;
+      background: transparent;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 26px;
+    }
+
+    .search-field input::placeholder {
+      color: #85847e;
+      opacity: 1;
+    }
+
+    .search-field input::-webkit-search-cancel-button {
+      display: none;
+      -webkit-appearance: none;
+    }
+
+    .search-body {
+      height: calc(100vh - 86px);
+      overflow-y: auto;
+      padding: 28px;
+    }
+
+    .search-suggestions {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 48px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding-top: 40px;
+    }
+
+    .suggestion-list {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 18px;
+    }
+
+    .suggestion-button {
+      padding: 4px 0;
+      background: transparent;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .search-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .search-feature img {
+      height: 340px;
+      object-fit: cover;
+    }
+
+    .search-feature-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: 26px;
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .search-feature-copy h2 {
+      margin: 10px 0 20px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 0.95;
+    }
+
+    .search-results-title {
+      margin: 0 0 20px;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .search-results-grid {
+      display: grid;
+      grid-template-columns: repeat(var(--result-count, 4), minmax(0, 1fr));
+      gap: 0;
+      background: transparent;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .search-result {
+      min-width: 0;
+      padding: 0;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .search-result img {
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+
+    .search-result span {
+      display: block;
+      padding: 11px 12px 0;
+      overflow: hidden;
+      font-size: 12px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .search-result span:last-child {
+      padding-top: 3px;
+      padding-bottom: 12px;
+      color: var(--muted);
+    }
+
+    .search-empty {
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .search-empty h2 {
+      margin: 0 0 9px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 36px;
+      font-weight: 500;
+    }
+
+    .search-empty p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .menu-layer {
+      z-index: 76;
+      background: var(--green);
+      color: var(--white);
+      transform: translateY(-100%);
+      transition: visibility 0s linear 360ms, transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+      opacity: 1;
+    }
+
+    .menu-layer.open {
+      transform: translateY(0);
+    }
+
+    .mobile-menu-head {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      height: 66px;
+      padding: 0 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .mobile-menu-head .wordmark {
+      grid-column: 2;
+    }
+
+    .mobile-menu-head .icon-button {
+      grid-column: 3;
+      justify-self: end;
+      font-size: 24px;
+    }
+
+    .mobile-menu-nav {
+      display: flex;
+      flex-direction: column;
+      padding: 34px 20px;
+    }
+
+    .mobile-menu-nav a,
+    .mobile-menu-nav button {
+      padding: 10px 0;
+      background: transparent;
+      color: inherit;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 40px;
+      text-align: left;
+    }
+
+    .mobile-menu-meta {
+      position: absolute;
+      right: 20px;
+      bottom: 24px;
+      left: 20px;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.35);
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 90;
+      right: 20px;
+      bottom: 20px;
+      max-width: 300px;
+      padding: 13px 16px;
+      color: var(--white);
+      background: var(--green);
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1080px) {
+      .nav-group {
+        gap: 16px;
+      }
+
+      .product-grid,
+      .product-grid[data-view="3"] {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .site-footer {
+        grid-template-columns: 1.5fr repeat(3, 1fr);
+      }
+
+      .product-stage {
+        grid-template-columns: minmax(0, 1.35fr) minmax(360px, 0.9fr);
+      }
+
+      .product-details {
+        padding-right: 26px;
+        padding-left: 26px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --announcement-height: 27px;
+        --header-height: 58px;
+        --toolbar-height: 49px;
+      }
+
+      .announcement {
+        display: flex;
+        justify-content: center;
+        min-height: 27px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+
+      .announcement p {
+        grid-column: auto;
+      }
+
+      .announcement a {
+        display: none;
+      }
+
+      .site-header {
+        grid-template-columns: 1fr auto 1fr;
+        padding: 0 12px;
+      }
+
+      .site-header .nav-group {
+        display: none;
+      }
+
+      .nav-preview {
+        display: none;
+      }
+
+      .mobile-control {
+        display: inline-grid;
+        align-items: center;
+        min-width: 38px;
+        min-height: 38px;
+        padding: 0;
+        background: transparent;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      .mobile-control.menu-control {
+        justify-self: start;
+      }
+
+      .mobile-control.bag-control {
+        display: inline-flex;
+        align-items: center;
+        justify-self: end;
+        justify-content: end;
+        min-width: 62px;
+        white-space: nowrap;
+      }
+
+      .wordmark {
+        font-size: 32px;
+      }
+
+      .shop-intro {
+        display: block;
+        min-height: 190px;
+        padding: 49px 16px 20px;
+      }
+
+      .shop-intro h1 {
+        font-size: 52px;
+      }
+
+      .shop-intro p:last-child {
+        margin-top: 22px;
+        font-size: 18px;
+      }
+
+      .category-nav {
+        gap: 23px;
+        min-height: 52px;
+        padding: 0 14px;
+        scroll-snap-type: x proximity;
+      }
+
+      .category-button {
+        min-height: 51px;
+        scroll-snap-align: start;
+      }
+
+      .subcategory-nav {
+        gap: 20px;
+        padding: 0 14px;
+      }
+
+      .catalog-group-head {
+        align-items: start;
+        min-height: 88px;
+        padding: 20px 12px 16px;
+      }
+
+      .catalog-group-head h3 {
+        font-size: 29px;
+      }
+
+      .catalog-group-head .group-copy {
+        max-width: 150px;
+        font-size: 12px;
+      }
+
+      .catalog-toolbar {
+        grid-template-columns: 1fr auto;
+        padding: 0 10px;
+      }
+
+      .catalog-count {
+        display: none;
+      }
+
+      .toolbar-end {
+        gap: 12px;
+      }
+
+      .sort-control > span:first-child {
+        display: none;
+      }
+
+      .sort-selected {
+        font-size: 12px;
+      }
+
+      .view-controls {
+        display: none;
+      }
+
+      .product-grid,
+      .product-grid[data-view="3"] {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .product-meta {
+        display: block;
+        min-height: 94px;
+        padding: 11px 10px 13px;
+      }
+
+      .product-name,
+      .product-price,
+      .product-color {
+        display: block;
+      }
+
+      .product-price {
+        margin-top: 3px;
+      }
+
+      .product-color {
+        margin-top: 6px;
+        font-size: 12px;
+      }
+
+      .product-flag {
+        top: 8px;
+        left: 8px;
+        padding: 5px;
+        font-size: 12px;
+      }
+
+      .service-strip {
+        display: block;
+      }
+
+      .service-item {
+        min-height: 88px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(17, 17, 15, 0.22);
+      }
+
+      .site-footer {
+        grid-template-columns: 1fr 1fr;
+        gap: 38px 20px;
+        min-height: 0;
+        padding: 35px 18px 44px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-column:last-child {
+        display: none;
+      }
+
+      .footer-bottom {
+        display: grid;
+        gap: 7px;
+        padding: 14px 18px 18px;
+      }
+
+      .bag-drawer,
+      .filter-drawer {
+        width: 100vw;
+      }
+
+      .drawer-header {
+        min-height: 56px;
+      }
+
+      .product-view {
+        grid-template-rows: 56px minmax(0, 1fr);
+      }
+
+      .product-view-header {
+        padding: 0 13px;
+      }
+
+      .product-view-header .wordmark {
+        font-size: 31px;
+      }
+
+      .product-back span:last-child {
+        display: none;
+      }
+
+      .product-back span:first-child {
+        font-size: 18px;
+      }
+
+      .product-stage {
+        display: block;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+
+      .product-gallery-stage {
+        height: min(62vh, 570px);
+        min-height: 420px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .gallery-arrow {
+        width: 36px;
+        height: 36px;
+      }
+
+      .gallery-arrow.previous {
+        left: 10px;
+      }
+
+      .gallery-arrow.next {
+        right: 10px;
+      }
+
+      .gallery-footer {
+        right: 13px;
+        bottom: 12px;
+        left: 13px;
+      }
+
+      .image-viewer {
+        grid-template-rows: 58px minmax(0, 1fr) 50px;
+      }
+
+      .image-viewer-header,
+      .image-viewer-footer {
+        padding: 0 12px;
+      }
+
+      .image-viewer-stage {
+        padding: 14px 12px 76px;
+      }
+
+      .image-viewer-arrow {
+        top: auto;
+        bottom: 14px;
+        width: 44px;
+        height: 44px;
+        transform: none;
+      }
+
+      .image-viewer-arrow.previous {
+        left: 50%;
+        margin-left: -52px;
+      }
+
+      .image-viewer-arrow.next {
+        right: 50%;
+        margin-right: -52px;
+      }
+
+      .product-purchase-scroll {
+        overflow: visible;
+      }
+
+      .product-details {
+        width: 100%;
+        padding: 29px 17px 45px;
+      }
+
+      .product-heading h2 {
+        font-size: 22px;
+      }
+
+      .product-meta-line {
+        margin-bottom: 29px;
+      }
+
+      .product-description {
+        margin-top: 27px;
+        font-size: 12px;
+      }
+
+      .bag-item {
+        grid-template-columns: 100px minmax(0, 1fr);
+        gap: 13px;
+      }
+
+      .search-head {
+        grid-template-columns: minmax(0, 1fr) auto;
+        min-height: 66px;
+        padding: 0 12px;
+      }
+
+      .search-head .wordmark {
+        display: none;
+      }
+
+      .search-field {
+        justify-self: stretch;
+      }
+
+      .search-field input {
+        height: 48px;
+        font-size: 21px;
+      }
+
+      .search-field::before {
+        top: 16px;
+      }
+
+      .search-field::after {
+        top: 30px;
+      }
+
+      .search-body {
+        height: calc(100vh - 66px);
+        padding: 18px 12px 30px;
+      }
+
+      .search-suggestions {
+        display: block;
+        padding-top: 22px;
+      }
+
+      .suggestion-button {
+        font-size: 28px;
+      }
+
+      .search-feature {
+        margin-top: 38px;
+      }
+
+      .search-feature img {
+        height: 260px;
+      }
+
+      .search-feature-copy {
+        padding: 17px;
+      }
+
+      .search-feature-copy h2 {
+        font-size: 26px;
+      }
+
+      .search-results-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .toast {
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+        max-width: none;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Temporary concept photography is sourced from Pexels and should be replaced by a consistent final campaign/catalog shoot. -->
+  <div class="announcement">
+    <p>Complimentary delivery on orders over <span data-money-usd="500">$500</span></p>
+    <a href="rone-care-v1.html#delivery">Delivery &amp; returns</a>
+  </div>
+
+  <header class="site-header" data-site-header>
+    <nav class="nav-group" aria-label="Primary navigation">
+      <a class="nav-link" href="rone-shop-v1.html" aria-current="page" data-nav-preview-trigger="shop" aria-haspopup="true" aria-expanded="false">Shop</a>
+      <a class="nav-link" href="rone-collections-v1.html" data-nav-preview-trigger="collections" aria-haspopup="true" aria-expanded="false">Collections</a>
+      <a class="nav-link" href="rone-about-v1.html" data-nav-preview-trigger="about" aria-haspopup="true" aria-expanded="false">About</a>
+    </nav>
+    <button class="mobile-control menu-control" type="button" data-open="menu" aria-label="Open menu">Menu</button>
+
+    <a class="wordmark" href="index.html" aria-label="Rone home">Rone</a>
+
+    <nav class="nav-group right" aria-label="Utility navigation">
+      <button class="nav-action" type="button" data-open="search">Search</button>
+      <a class="nav-link" href="rone-account-v1.html">Account</a>
+      <label class="currency-picker currency-picker--header"><span class="sr-only">Purchase currency</span><select data-currency-select aria-label="Purchase currency"><option value="NGN">NGN &#8358;</option><option value="USD">USD $</option></select></label>
+      <button class="nav-action" type="button" data-open="bag">Bag (<span class="bag-count" data-bag-count>0</span>)</button>
+    </nav>
+    <button class="mobile-control bag-control" type="button" data-open="bag">Bag (<span class="bag-count" data-bag-count>0</span>)</button>
+  </header>
+
+  <div class="nav-preview" data-nav-preview aria-hidden="true" inert>
+    <section class="nav-preview-panel" data-nav-preview-panel="shop" aria-label="Shop preview">
+      <div class="nav-preview-column nav-preview-lead">
+        <p class="eyebrow">Shop Rone</p>
+        <a href="rone-shop-v1.html">Shop all</a>
+        <a href="rone-shop-v1.html?sort=newest">New arrivals</a>
+        <a href="rone-shop-v1.html?filter=icon">Rone icons</a>
+      </div>
+      <div class="nav-preview-column">
+        <p class="eyebrow">Departments</p>
+        <a href="rone-shop-v1.html?category=Clothing">Clothing</a>
+        <a href="rone-shop-v1.html?category=Bags">Bags</a>
+        <a href="rone-shop-v1.html?category=Shoes">Shoes</a>
+        <a href="rone-shop-v1.html?category=Underwear">Underwear</a>
+        <a href="rone-shop-v1.html?category=Accessories">Accessories</a>
+      </div>
+      <div class="nav-preview-column">
+        <p class="eyebrow">Underwear</p>
+        <a href="rone-shop-v1.html?category=Underwear&amp;subcategory=Singlets">Singlets</a>
+        <a href="rone-shop-v1.html?category=Underwear&amp;subcategory=Boxers">Boxers</a>
+        <a href="rone-shop-v1.html?category=Underwear&amp;subcategory=Pants">Pants</a>
+        <a href="rone-shop-v1.html?category=Underwear&amp;subcategory=Swimwear">Swimwear</a>
+        <a href="rone-shop-v1.html?category=Underwear&amp;subcategory=Tights">Tights</a>
+      </div>
+      <figure class="nav-preview-visual"><img src="https://images.pexels.com/photos/3927390/pexels-photo-3927390.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Rone clothing and accessories edit"><figcaption><span>The First Assembly</span><span aria-hidden="true">&#8594;</span></figcaption></figure>
+    </section>
+    <section class="nav-preview-panel" data-nav-preview-panel="collections" aria-label="Collections preview">
+      <div class="nav-preview-column nav-preview-lead"><p class="eyebrow">Current chapter</p><a href="rone-collections-v1.html">The First Assembly</a><a href="rone-shop-v1.html?sort=newest">New work</a></div>
+      <div class="nav-preview-column"><p class="eyebrow">By wardrobe</p><a href="rone-shop-v1.html?category=Clothing">Quiet tailoring</a><a href="rone-shop-v1.html?category=Bags">Leather forms</a><a href="rone-shop-v1.html?category=Shoes">Soft structure</a></div>
+      <div class="nav-preview-column"><p class="eyebrow">Stories</p><a href="rone-collections-v1.html#chapter-one">Tailoring without theatre</a><a href="rone-collections-v1.html#chapter-two">Material studies</a><a href="rone-collections-v1.html#collection-edit">The collection edit</a></div>
+      <figure class="nav-preview-visual"><img src="assets/rone-collection-hero.jpg" alt="Rone relaxed tailoring collection"><figcaption><span>Built as a wardrobe</span><span aria-hidden="true">&#8594;</span></figcaption></figure>
+    </section>
+    <section class="nav-preview-panel" data-nav-preview-panel="about" aria-label="About Rone preview">
+      <div class="nav-preview-column nav-preview-lead"><p class="eyebrow">Rone</p><a href="rone-about-v1.html">Our approach</a><a href="rone-about-v1.html#the-house">The house</a></div>
+      <div class="nav-preview-column"><p class="eyebrow">Principles</p><a href="rone-about-v1.html#materials">Natural fibres</a><a href="rone-about-v1.html#principles">Limited runs</a><a href="rone-about-v1.html#principles">Repair-minded design</a></div>
+      <div class="nav-preview-column"><p class="eyebrow">Client care</p><a href="rone-care-v1.html#contact">Contact</a><a href="rone-care-v1.html#delivery">Delivery and returns</a><a href="rone-care-v1.html#product-care">Product care</a></div>
+      <figure class="nav-preview-visual"><img src="https://images.pexels.com/photos/6630853/pexels-photo-6630853.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Close view of Rone knitwear"><figcaption><span>Material, form, time</span><span aria-hidden="true">&#8594;</span></figcaption></figure>
+    </section>
+  </div>
+
+  <main id="main-content">
+    <section class="shop-intro" aria-labelledby="shop-title">
+      <div>
+        <p class="eyebrow">Rone / The First Assembly</p>
+        <h1 id="shop-title">The Rone Shop</h1>
+      </div>
+      <p>Clothing, bags, shoes and intimate layers designed across men, women and unisex wardrobes.</p>
+    </section>
+
+    <nav class="category-nav" aria-label="Product categories" data-category-nav></nav>
+    <nav class="subcategory-nav" aria-label="Underwear categories" data-subcategory-nav hidden></nav>
+
+    <section aria-labelledby="catalog-title">
+      <h2 class="sr-only" id="catalog-title">All products</h2>
+      <div class="catalog-toolbar">
+        <button class="toolbar-button" type="button" data-open="filters">
+          <span class="filter-mark" aria-hidden="true"></span>
+          <span>Filter</span>
+          <span class="filter-badge" data-filter-badge aria-hidden="true"></span>
+        </button>
+        <p class="catalog-count" aria-live="polite" data-product-count>27 pieces</p>
+        <div class="toolbar-end">
+          <label class="sort-control">
+            <span>Sort by</span>
+            <span class="sort-select-shell">
+              <span class="sort-selected" data-sort-selected aria-hidden="true">Featured</span>
+              <select data-sort aria-label="Sort products">
+                <option value="featured">Featured</option>
+                <option value="newest">Newest</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+              </select>
+            </span>
+          </label>
+          <div class="view-controls" role="group" aria-label="Product grid view">
+            <button class="view-button" type="button" data-view="3" aria-label="Show three columns" aria-pressed="false"></button>
+            <button class="view-button" type="button" data-view="4" aria-label="Show four columns" aria-pressed="true"></button>
+          </div>
+        </div>
+      </div>
+
+      <div data-product-groups></div>
+      <div class="catalog-empty" data-catalog-empty>
+        <h2>No pieces found</h2>
+        <p>Try removing a filter to see more of the collection.</p>
+        <button class="text-button" type="button" data-clear-filters>Clear all filters</button>
+      </div>
+      <div class="catalog-end">
+        <div>
+          <p data-catalog-end>Showing all 27 pieces</p>
+          <a href="#shop-title">Return to top</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-strip" id="services" aria-label="Rone services">
+      <div class="service-item"><p class="eyebrow">01 / Delivery</p><p>Complimentary delivery above <span data-money-usd="500">$500</span>.</p></div>
+      <div class="service-item"><p class="eyebrow">02 / Returns</p><p>Returns accepted within 30 days.</p></div>
+      <div class="service-item"><p class="eyebrow">03 / Care</p><p>Repair support for every Rone piece.</p></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><div class="footer-wordmark">Rone</div></div>
+    <div class="footer-column"><h2>Shop</h2><a href="#shop-title">New arrivals</a><a href="?category=Clothing">Clothing</a><a href="?category=Bags">Bags</a><a href="?category=Shoes">Shoes</a><a href="?category=Underwear">Underwear</a></div>
+    <div class="footer-column"><h2>Assistance</h2><a href="rone-care-v1.html#contact">Contact</a><a href="rone-care-v1.html#delivery">Delivery &amp; returns</a><a href="rone-care-v1.html#product-care">Product care</a><a href="rone-care-v1.html#size-guide">Size guide</a><a href="rone-tracking-v1.html">Track an order</a></div>
+    <div class="footer-column"><h2>Rone</h2><a href="rone-about-v1.html">About</a><a href="rone-collections-v1.html">Collections</a><a href="rone-account-v1.html">Account</a><a href="rone-saved-v1.html">Saved pieces</a><a href="rone-search-v1.html">Search</a></div>
+  </footer>
+  <div class="footer-bottom"><span>&copy; 2026 Rone</span><span class="footer-policy-links"><a href="rone-policies-v1.html#privacy">Privacy</a><a href="rone-policies-v1.html#terms">Terms</a><a href="rone-policies-v1.html#accessibility">Accessibility</a></span><label class="currency-picker currency-picker--footer"><span class="sr-only">Purchase currency</span><select data-currency-select aria-label="Purchase currency"><option value="NGN">NGN &#8358;</option><option value="USD">USD $</option></select></label></div>
+
+  <div class="layer" data-layer="filters" aria-hidden="true" inert>
+    <aside class="drawer left filter-drawer" role="dialog" aria-modal="true" aria-labelledby="filter-title">
+      <div class="drawer-header"><h2 id="filter-title">Filter</h2><button class="icon-button" type="button" data-close aria-label="Close filters">&times;</button></div>
+      <div class="drawer-scroll">
+        <form data-filter-form>
+          <details class="filter-section" open>
+            <summary>Gender</summary>
+            <div class="filter-options" data-filter-options="gender"></div>
+          </details>
+          <details class="filter-section">
+            <summary>Underwear type</summary>
+            <div class="filter-options" data-filter-options="subcategory"></div>
+          </details>
+          <details class="filter-section" open>
+            <summary>Colour</summary>
+            <div class="filter-options" data-filter-options="tone"></div>
+          </details>
+          <details class="filter-section">
+            <summary>Material</summary>
+            <div class="filter-options" data-filter-options="material"></div>
+          </details>
+          <details class="filter-section">
+            <summary>Availability</summary>
+            <div class="filter-options" data-filter-options="availability"></div>
+          </details>
+          <button class="sr-only" type="submit">Apply filters</button>
+        </form>
+      </div>
+      <div class="filter-actions">
+        <button class="secondary-button" type="button" data-clear-filters>Clear</button>
+        <button class="primary-button" type="button" data-apply-filters>View pieces</button>
+      </div>
+    </aside>
+  </div>
+
+  <div class="layer product-layer" data-layer="product" aria-hidden="true" inert>
+    <section class="product-view" data-product-view role="dialog" aria-modal="true" aria-labelledby="product-view-title">
+      <header class="product-view-header">
+        <button class="product-back" type="button" data-close aria-label="Return to the shop"><span aria-hidden="true">&#8592;</span><span>Back to shop</span></button>
+        <span class="wordmark" aria-hidden="true">Rone</span>
+        <button class="icon-button" type="button" data-close aria-label="Close product details">&times;</button>
+      </header>
+      <div class="product-stage">
+        <section class="product-gallery-stage" aria-label="Product images">
+          <div class="product-gallery" data-product-gallery></div>
+          <button class="gallery-arrow previous" type="button" data-gallery-prev aria-label="Previous product image"><span aria-hidden="true">&#8592;</span></button>
+          <button class="gallery-arrow next" type="button" data-gallery-next aria-label="Next product image"><span aria-hidden="true">&#8594;</span></button>
+          <div class="gallery-footer">
+            <div class="gallery-dots" data-gallery-dots role="group" aria-label="Choose product image"></div>
+            <span data-gallery-count>1 / 3</span>
+          </div>
+        </section>
+        <div class="product-purchase-scroll">
+          <div class="product-details">
+            <p class="product-kicker" data-drawer-kicker>Rone / Unisex</p>
+            <div class="product-heading">
+              <h2 id="product-view-title" data-drawer-name>Moss Merino Crew</h2>
+              <p class="drawer-price" data-drawer-price></p>
+            </div>
+            <p class="product-meta-line" data-drawer-category>Clothing / Field olive</p>
+            <div class="option-block colour-option">
+              <div class="option-label"><span>Select colour</span><span data-selected-colour></span></div>
+              <div class="swatch-list" data-swatch-list></div>
+            </div>
+            <div class="option-block size-option">
+              <div class="option-label"><span>Select size</span><a href="rone-care-v1.html#size-guide">Size guide</a></div>
+              <div class="size-list" data-size-list></div>
+              <p class="size-error" data-size-error role="alert">Select a size before adding this piece.</p>
+            </div>
+            <div class="product-actions"><button class="primary-button product-add" type="button" data-add-to-bag>Add to bag</button><button class="secondary-button product-save" type="button" data-save-piece aria-pressed="false">Save piece</button></div>
+            <p class="purchase-note">In stock / Complimentary delivery above <span data-money-usd="500">$500</span></p>
+            <p class="product-description" data-drawer-description></p>
+            <div class="detail-list">
+              <details><summary>Description and composition</summary><p data-drawer-composition></p></details>
+              <details><summary>Size and fit</summary><p data-drawer-fit>Designed for an easy, considered fit. Take your usual size or size up for a more relaxed line.</p></details>
+              <details><summary>Care and maintenance</summary><p>Store away from direct light and humidity. Specialist cleaning is recommended for leather, suede and structured tailoring.</p></details>
+              <details><summary>Shipping and returns</summary><p>Complimentary delivery on orders above <span data-money-usd="500">$500</span>. Unworn pieces may be returned in their original condition within 30 days.</p></details>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="image-viewer" data-image-viewer role="dialog" aria-modal="true" aria-labelledby="image-viewer-title" hidden>
+      <header class="image-viewer-header"><p id="image-viewer-title" data-image-viewer-title>Product image</p><button class="image-viewer-close" type="button" data-image-viewer-close aria-label="Close expanded image">&times;</button></header>
+      <div class="image-viewer-stage" data-image-viewer-stage><button class="image-viewer-arrow previous" type="button" data-image-viewer-prev aria-label="Previous expanded image"><span aria-hidden="true">&#8592;</span></button><a class="image-viewer-native" data-image-viewer-native href="assets/rone-collection-hero.jpg" target="_blank" rel="noopener" aria-label="Open full-size image in the browser" title="Open full-size image"><img data-image-viewer-image src="assets/rone-collection-hero.jpg" alt=""></a><button class="image-viewer-arrow next" type="button" data-image-viewer-next aria-label="Next expanded image"><span aria-hidden="true">&#8594;</span></button></div>
+      <footer class="image-viewer-footer"><span data-image-viewer-count>1 / 3</span><span>Rone / Detail view</span></footer>
+    </section>
+  </div>
+
+  <div class="layer" data-layer="bag" aria-hidden="true" inert>
+    <aside class="drawer right bag-drawer" role="dialog" aria-modal="true" aria-labelledby="bag-title">
+      <div class="drawer-header"><h2 id="bag-title">Your bag (<span data-bag-title-count>0</span>)</h2><button class="icon-button" type="button" data-close aria-label="Close bag">&times;</button></div>
+      <div class="drawer-scroll" data-bag-body></div>
+      <div class="bag-summary" data-bag-summary hidden>
+        <p class="delivery-message" data-delivery-message></p>
+        <div class="delivery-track" aria-hidden="true"><div class="delivery-progress" data-delivery-progress></div></div>
+        <p class="subtotal"><span>Subtotal</span><span data-bag-subtotal>$0</span></p>
+        <p class="tax-note">Taxes and delivery calculated at checkout.</p>
+        <a class="primary-button" href="rone-checkout-v1.html">Checkout</a>
+      </div>
+    </aside>
+  </div>
+
+  <div class="layer search-layer" data-layer="search" aria-hidden="true" inert>
+    <div class="search-head">
+      <a class="wordmark" href="index.html" aria-label="Rone home">Rone</a>
+      <label class="search-field"><span class="sr-only">Search Rone</span><input type="search" data-search-input placeholder="Search pieces and categories" autocomplete="off"></label>
+      <button class="icon-button" type="button" data-close aria-label="Close search">&times;</button>
+    </div>
+    <div class="search-body" data-search-body></div>
+  </div>
+
+  <div class="layer menu-layer" data-layer="menu" aria-hidden="true" inert>
+    <div class="mobile-menu-head"><span class="wordmark">Rone</span><button class="icon-button" type="button" data-close aria-label="Close menu">&times;</button></div>
+    <nav class="mobile-menu-nav" aria-label="Mobile navigation">
+      <a href="rone-shop-v1.html" aria-current="page">Shop</a>
+      <a href="rone-collections-v1.html">Collections</a>
+      <a href="rone-about-v1.html">About</a>
+      <button type="button" data-menu-search>Search</button>
+      <a href="rone-account-v1.html">Account</a>
+      <a href="rone-saved-v1.html">Saved pieces</a>
+    </nav>
+    <div class="mobile-menu-meta"><label class="currency-picker currency-picker--mobile"><span class="sr-only">Purchase currency</span><select data-currency-select aria-label="Purchase currency"><option value="NGN">NGN &#8358;</option><option value="USD">USD $</option></select></label><span>Rone 2026</span></div>
+  </div>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+  <script>
+    const imageUrl = (id, width = 1200) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
+
+    const products = [
+      {
+        slug: "moss-merino-crew", name: "Moss Merino Crew", category: "Clothing", gender: "Unisex", price: 395, colour: "Field olive", tone: "Green", material: "Merino", flag: "New", featured: 1,
+        colours: [{ name: "Field olive", value: "#57624b" }, { name: "Ink", value: "#1d1e1b" }, { name: "Chalk", value: "#d8d5ca" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("5710046"), worn: imageUrl("7760239"), gallery: [imageUrl("5710046", 1400), imageUrl("7760239", 1400), imageUrl("6630853", 1400)],
+        description: "A relaxed unisex crew in fine-gauge merino, shaped for quiet layering across seasons.", composition: "100% merino wool. Relaxed fit with a clean shoulder, ribbed collar, cuffs and hem. Made in Italy."
+      },
+      {
+        slug: "house-blazer", name: "House Blazer", category: "Clothing", gender: "Unisex", price: 740, colour: "Stone", tone: "Neutral", material: "Wool", flag: "New", featured: 2,
+        colours: [{ name: "Stone", value: "#b0a792" }, { name: "Ink", value: "#20211f" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("14577586"), worn: imageUrl("13169319"), gallery: [imageUrl("14577586", 1400), imageUrl("13169319", 1400), imageUrl("30573777", 1400)],
+        description: "Softly constructed tailoring with an elongated line and just enough structure to hold its shape.", composition: "Virgin wool blend with cupro lining. Single-breasted closure, internal pocket and relaxed unisex fit."
+      },
+      {
+        slug: "fold-leather-tote", name: "Fold Leather Tote", category: "Bags", gender: "Unisex", price: 870, colour: "Cacao", tone: "Brown", material: "Leather", flag: "Rone icon", featured: 3,
+        colours: [{ name: "Cacao", value: "#65483a" }, { name: "Black", value: "#1b1b19" }, { name: "Oxblood", value: "#712938" }, { name: "Moss", value: "#4d5946" }], sizes: ["One size"],
+        primary: imageUrl("23223854"), worn: imageUrl("26316180"), gallery: [imageUrl("23223854", 1400), imageUrl("26316180", 1400), imageUrl("9267589", 1400)],
+        description: "An unlined everyday tote that folds naturally around the body while keeping a precise profile.", composition: "Full-grain calf leather, bonded suede interior, magnetic closure and removable internal pouch."
+      },
+      {
+        slug: "soft-step-loafer", name: "Soft-Step Loafer", category: "Shoes", gender: "Unisex", price: 520, colour: "Tobacco suede", tone: "Brown", material: "Suede", flag: "", featured: 4,
+        colours: [{ name: "Tobacco suede", value: "#89684f" }, { name: "Black", value: "#20201d" }], sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44"],
+        primary: imageUrl("31935097"), worn: imageUrl("9154684"), gallery: [imageUrl("31935097", 1400), imageUrl("9154684", 1400), imageUrl("3927390", 1400)],
+        description: "A soft suede loafer set on a low leather sole, balancing ease with a formal edge.", composition: "Suede upper, leather lining and stitched leather sole. Fits true to size. Made in Portugal."
+      },
+      {
+        slug: "ribbed-cashmere-polo", name: "Ribbed Cashmere Polo", category: "Clothing", gender: "Women", price: 330, colour: "Oat", tone: "Neutral", material: "Cashmere", flag: "New", featured: 5,
+        colours: [{ name: "Oat", value: "#c9bea8" }, { name: "Oxblood", value: "#7b2e3a" }, { name: "Ink", value: "#242522" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("14377294"), worn: imageUrl("19514232"), gallery: [imageUrl("14377294", 1400), imageUrl("19514232", 1400), imageUrl("6995880", 1400)],
+        description: "A close ribbed polo in light cashmere with a long placket and fine, compact collar.", composition: "90% cashmere, 10% silk. Fine rib structure with natural stretch and mother-of-pearl buttons."
+      },
+      {
+        slug: "pleated-field-trouser", name: "Pleated Field Trouser", category: "Clothing", gender: "Men", price: 460, colour: "Khaki", tone: "Neutral", material: "Cotton", flag: "", featured: 6,
+        colours: [{ name: "Khaki", value: "#9b927d" }, { name: "Forest", value: "#2d4938" }], sizes: ["26", "28", "30", "32", "34", "36"],
+        primary: imageUrl("3927390"), worn: imageUrl("30573777"), gallery: [imageUrl("3927390", 1400), imageUrl("30573777", 1400), imageUrl("37189939", 1400)],
+        description: "A wide, gently tapered trouser with a single forward pleat and clean break over the shoe.", composition: "Dense cotton twill. Mid rise, internal waist adjusters, side pockets and buttoned back pockets."
+      },
+      {
+        slug: "studio-shoulder-bag", name: "Studio Shoulder Bag", category: "Bags", gender: "Women", price: 680, colour: "Black", tone: "Black", material: "Leather", flag: "New", featured: 7,
+        colours: [{ name: "Black", value: "#171815" }, { name: "Cacao", value: "#694b3b" }], sizes: ["One size"],
+        primary: imageUrl("9267589"), worn: imageUrl("26316180"), gallery: [imageUrl("9267589", 1400), imageUrl("26316180", 1400), imageUrl("23223854", 1400)],
+        description: "A compact shoulder form with a curved base, softened edges and an adjustable strap.", composition: "Smooth calf leather, cotton lining, brushed metal zip and one internal card pocket."
+      },
+      {
+        slug: "weekend-jacket", name: "Weekend Jacket", category: "Clothing", gender: "Men", price: 790, colour: "Putty", tone: "Neutral", material: "Cotton", flag: "Limited", featured: 8,
+        colours: [{ name: "Putty", value: "#b6ad9d" }, { name: "Clay", value: "#8a5f4e" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("13258257"), worn: imageUrl("34116217"), gallery: [imageUrl("13258257", 1400), imageUrl("34116217", 1400), imageUrl("14577586", 1400)],
+        description: "A light utility jacket reduced to its essentials, with a boxy body and dropped shoulder.", composition: "Garment-dyed cotton canvas. Two-way zip, patch pockets and unlined construction."
+      },
+      {
+        slug: "merino-house-scarf", name: "Merino House Scarf", category: "Accessories", gender: "Unisex", price: 180, colour: "Moss", tone: "Green", material: "Merino", flag: "Rone icon", featured: 9,
+        colours: [{ name: "Moss", value: "#5b654e" }, { name: "Chalk", value: "#d9d4c8" }, { name: "Oxblood", value: "#752c38" }], sizes: ["One size"],
+        primary: imageUrl("9603627"), worn: imageUrl("6630853"), gallery: [imageUrl("9603627", 1400), imageUrl("6630853", 1400), imageUrl("3799361", 1400)],
+        description: "A long, fluid merino scarf finished with a compact edge and a discreet tonal mark.", composition: "100% extra-fine merino wool. 190 x 36 cm. Hand wash cold and dry flat."
+      },
+      {
+        slug: "frame-leather-belt", name: "Frame Leather Belt", category: "Accessories", gender: "Unisex", price: 240, colour: "Cacao", tone: "Brown", material: "Leather", flag: "Rone icon", featured: 10,
+        colours: [{ name: "Cacao", value: "#65493a" }, { name: "Black", value: "#1b1c1a" }], sizes: ["75", "80", "85", "90", "95", "100"],
+        primary: imageUrl("32734334"), worn: imageUrl("13169319"), gallery: [imageUrl("32734334", 1400), imageUrl("13169319", 1400), imageUrl("3927390", 1400)],
+        description: "A slim leather belt with a low-profile frame buckle designed to sit quietly with tailoring.", composition: "Vegetable-tanned calf leather with brushed brass hardware. 25 mm width. Made in Italy."
+      },
+      {
+        slug: "club-wool-cap", name: "Club Wool Cap", category: "Accessories", gender: "Unisex", price: 165, colour: "Charcoal", tone: "Black", material: "Wool", flag: "New", featured: 11,
+        colours: [{ name: "Charcoal", value: "#3b3d39" }, { name: "Bottle green", value: "#254638" }], sizes: ["S/M", "L/XL"],
+        primary: imageUrl("31078828"), worn: imageUrl("37189939"), gallery: [imageUrl("31078828", 1400), imageUrl("37189939", 1400), imageUrl("30573777", 1400)],
+        description: "A shallow six-panel cap in brushed wool with a softly curved brim and tonal fastening.", composition: "100% wool outer, cotton headband and adjustable leather back strap."
+      },
+      {
+        slug: "house-sock", name: "House Sock", category: "Accessories", gender: "Unisex", price: 95, colour: "Brick", tone: "Red", material: "Cotton", flag: "", featured: 12,
+        colours: [{ name: "Brick", value: "#9a3d35" }, { name: "Moss", value: "#536148" }, { name: "Chalk", value: "#d8d5ca" }], sizes: ["S/M", "L/XL"],
+        primary: imageUrl("31078828"), worn: imageUrl("30698043"), gallery: [imageUrl("31078828", 1400), imageUrl("30698043", 1400), imageUrl("3927390", 1400)],
+        description: "A fine rib sock with a comfortable hold and a reinforced heel and toe for everyday wear.", composition: "82% cotton, 16% polyamide, 2% elastane. Mid-calf length. Made in Portugal."
+      },
+      {
+        slug: "everyday-rib-tank", name: "Everyday Rib Tank", category: "Underwear", subcategory: "Singlets", gender: "Unisex", price: 120, colour: "White", tone: "White", material: "Cotton", flag: "New", featured: 13,
+        colours: [{ name: "White", value: "#f2f0e9" }, { name: "Black", value: "#1c1d1a" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("1107604"), worn: imageUrl("11526960"), gallery: [imageUrl("1107604", 1400), imageUrl("11526960", 1400), imageUrl("36856704", 1400)],
+        description: "A close unisex tank in compact cotton rib, cut with a high neckline and clean binding.", composition: "95% organic cotton, 5% elastane. Soft rib construction with bound neck and armholes."
+      },
+      {
+        slug: "mercer-boxer-two-pack", name: "Mercer Boxer 2-Pack", category: "Underwear", subcategory: "Boxers", gender: "Men", price: 90, colour: "White / Ink", tone: "White", material: "Cotton", flag: "", featured: 14,
+        colours: [{ name: "White / Ink", value: "#dedbd1" }, { name: "Moss / Chalk", value: "#536149" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("3993401"), worn: imageUrl("18035492"), gallery: [imageUrl("3993401", 1400), imageUrl("18035492", 1400), imageUrl("36856704", 1400)],
+        description: "Two lightweight woven boxers with an easy seat, side vents and a soft elastic waistband.", composition: "100% cotton poplin. Pack includes two colours. Relaxed menswear fit."
+      },
+      {
+        slug: "court-brief-two-pack", name: "Court Brief 2-Pack", category: "Underwear", subcategory: "Pants", gender: "Women", price: 85, colour: "Chalk", tone: "White", material: "Cotton", flag: "", featured: 15,
+        colours: [{ name: "Chalk", value: "#dedbd2" }, { name: "Black", value: "#1d1e1b" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("36856704"), worn: imageUrl("18795307"), gallery: [imageUrl("36856704", 1400), imageUrl("18795307", 1400), imageUrl("3993401", 1400)],
+        description: "A clean everyday brief in soft stretch cotton with a low-profile tonal waistband.", composition: "94% organic cotton, 6% elastane. Pack of two with flatlock seams and lined front."
+      },
+      {
+        slug: "geometry-pouch", name: "Geometry Pouch", category: "Bags", gender: "Unisex", price: 410, colour: "Forest", tone: "Green", material: "Leather", flag: "Limited", featured: 16,
+        colours: [{ name: "Forest", value: "#27483a" }, { name: "Oxblood", value: "#762c3a" }, { name: "Black", value: "#1b1c1a" }], sizes: ["One size"],
+        primary: imageUrl("22432981"), worn: imageUrl("37189939"), gallery: [imageUrl("22432981", 1400), imageUrl("37189939", 1400), imageUrl("32734334", 1400)],
+        description: "A structured zip pouch for small daily objects, proportioned to carry by hand or inside a tote.", composition: "Grained calf leather with smooth leather lining, metal zip and debossed internal mark."
+      },
+      {
+        slug: "east-west-carryall", name: "East-West Carryall", category: "Bags", gender: "Unisex", price: 980, colour: "Chestnut", tone: "Brown", material: "Leather", flag: "New", featured: 17,
+        colours: [{ name: "Chestnut", value: "#76513d" }, { name: "Black", value: "#181916" }], sizes: ["One size"],
+        primary: imageUrl("36367484"), worn: imageUrl("27046145"), gallery: [imageUrl("36367484", 1400), imageUrl("27046145", 1400), imageUrl("8502482", 1400)],
+        description: "An elongated carryall with softened corners and enough structure for daily travel.", composition: "Full-grain calf leather, cotton twill lining, double zip closure and removable shoulder strap."
+      },
+      {
+        slug: "night-frame-bag", name: "Night Frame Bag", category: "Bags", gender: "Women", price: 620, colour: "Cacao", tone: "Brown", material: "Leather", flag: "", featured: 18,
+        colours: [{ name: "Cacao", value: "#694938" }, { name: "Oxblood", value: "#702a38" }], sizes: ["One size"],
+        primary: imageUrl("8502482"), worn: imageUrl("27046144"), gallery: [imageUrl("8502482", 1400), imageUrl("27046144", 1400), imageUrl("36367484", 1400)],
+        description: "A compact leather frame bag designed for the hand or tucked close beneath the arm.", composition: "Smooth calf leather, suede lining, concealed magnetic frame and detachable strap."
+      },
+      {
+        slug: "field-derby", name: "Field Derby", category: "Shoes", gender: "Men", price: 590, colour: "Black", tone: "Black", material: "Leather", flag: "New", featured: 19,
+        colours: [{ name: "Black", value: "#191a18" }, { name: "Mahogany", value: "#684333" }], sizes: ["39", "40", "41", "42", "43", "44", "45"],
+        primary: imageUrl("37008332"), worn: imageUrl("7422198"), gallery: [imageUrl("37008332", 1400), imageUrl("7422198", 1400), imageUrl("32479925", 1400)],
+        description: "A round-toe derby with a softened upper and a grounded, low-profile sole.", composition: "Polished calf leather, leather lining and stacked leather-and-rubber sole. Made in Italy."
+      },
+      {
+        slug: "archive-brogue", name: "Archive Brogue", category: "Shoes", gender: "Men", price: 640, colour: "Cognac", tone: "Brown", material: "Leather", flag: "Rone icon", featured: 20,
+        colours: [{ name: "Cognac", value: "#8b6043" }, { name: "Black", value: "#1b1c19" }], sizes: ["39", "40", "41", "42", "43", "44", "45"],
+        primary: imageUrl("1619655"), worn: imageUrl("7422198"), gallery: [imageUrl("1619655", 1400), imageUrl("7422198", 1400), imageUrl("32479925", 1400)],
+        description: "A restrained wingtip brogue refined with a narrow welt and hand-burnished finish.", composition: "Calf leather upper and lining with a stitched leather sole and discreet rubber heel insert."
+      },
+      {
+        slug: "nappa-house-mule", name: "Nappa House Mule", category: "Shoes", gender: "Women", price: 460, colour: "Black", tone: "Black", material: "Leather", flag: "New", featured: 21,
+        colours: [{ name: "Black", value: "#171815" }, { name: "Chalk", value: "#d8d3c7" }], sizes: ["36", "37", "38", "39", "40", "41"],
+        primary: imageUrl("9267589"), worn: imageUrl("20377874"), gallery: [imageUrl("9267589", 1400), imageUrl("20377874", 1400), imageUrl("31935097", 1400)],
+        description: "A softly squared house mule with a low heel and a clean, close-fitting upper.", composition: "Supple nappa leather, padded leather footbed and hand-finished leather sole. Made in Italy."
+      },
+      {
+        slug: "poplin-evening-shirt", name: "Poplin Evening Shirt", category: "Clothing", gender: "Women", price: 360, colour: "Optic white", tone: "White", material: "Cotton", flag: "New", featured: 22,
+        colours: [{ name: "Optic white", value: "#f1f0eb" }, { name: "Ink", value: "#20211f" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("14577586"), worn: imageUrl("20377874"), gallery: [imageUrl("14577586", 1400), imageUrl("20377874", 1400), imageUrl("13258257", 1400)],
+        description: "A long-line poplin shirt with an exact collar and a fluid curved hem.", composition: "100% compact cotton poplin. Concealed placket, double cuffs and relaxed womenswear proportion."
+      },
+      {
+        slug: "riviera-swim-short", name: "Riviera Swim Short", category: "Underwear", subcategory: "Swimwear", gender: "Men", price: 190, colour: "Harbour blue", tone: "Blue", material: "Nylon", flag: "New", featured: 23,
+        colours: [{ name: "Harbour blue", value: "#375f70" }, { name: "Black", value: "#1b1c1a" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("3998649"), worn: imageUrl("7248337"), gallery: [imageUrl("3998649", 1400), imageUrl("7248337", 1400), imageUrl("4271771", 1400)],
+        description: "A tailored swim short with a clean front, side adjusters and a softly curved hem.", composition: "Quick-drying recycled nylon with mesh brief lining, internal drawcord and zipped back pocket."
+      },
+      {
+        slug: "form-swimsuit", name: "Form Swimsuit", category: "Underwear", subcategory: "Swimwear", gender: "Women", price: 220, colour: "Ink", tone: "Black", material: "Nylon", flag: "New", featured: 24,
+        colours: [{ name: "Ink", value: "#1a1b19" }, { name: "Oxblood", value: "#732b39" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("4271771"), worn: imageUrl("20377874"), gallery: [imageUrl("4271771", 1400), imageUrl("20377874", 1400), imageUrl("3998649", 1400)],
+        description: "A sculpted one-piece swimsuit with a square neckline and low, architectural back.", composition: "78% recycled nylon, 22% elastane. Fully lined with soft internal support."
+      },
+      {
+        slug: "contour-base-tight", name: "Contour Base Tight", category: "Underwear", subcategory: "Tights", gender: "Women", price: 150, colour: "Black", tone: "Black", material: "Nylon", flag: "", featured: 25,
+        colours: [{ name: "Black", value: "#181916" }, { name: "Moss", value: "#536048" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("16701769"), worn: imageUrl("24362254"), gallery: [imageUrl("16701769", 1400), imageUrl("24362254", 1400), imageUrl("20377874", 1400)],
+        description: "A matte base tight with supportive stretch, a clean high waist and minimal seams.", composition: "72% recycled nylon, 28% elastane. Breathable interlock with an internal waistband pocket."
+      },
+      {
+        slug: "motion-base-tight", name: "Motion Base Tight", category: "Underwear", subcategory: "Tights", gender: "Men", price: 165, colour: "Graphite", tone: "Black", material: "Nylon", flag: "", featured: 26,
+        colours: [{ name: "Graphite", value: "#323431" }, { name: "Bottle green", value: "#29473a" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("5327497"), worn: imageUrl("6455767"), gallery: [imageUrl("5327497", 1400), imageUrl("6455767", 1400), imageUrl("7248337", 1400)],
+        description: "A full-length base tight engineered for layering with a smooth front and supportive seat.", composition: "74% recycled nylon, 26% elastane. Flat seams, shaped gusset and wide elastic waistband."
+      },
+      {
+        slug: "fine-rib-singlet", name: "Fine Rib Singlet", category: "Underwear", subcategory: "Singlets", gender: "Women", price: 110, colour: "Chalk", tone: "White", material: "Cotton", flag: "Rone icon", featured: 27,
+        colours: [{ name: "Chalk", value: "#dfddd5" }, { name: "Black", value: "#1d1e1b" }], sizes: ["XS", "S", "M", "L", "XL"],
+        primary: imageUrl("1107604"), worn: imageUrl("23891643"), gallery: [imageUrl("1107604", 1400), imageUrl("23891643", 1400), imageUrl("24362254", 1400)],
+        description: "A fine rib singlet with a neat scoop neckline and close, softly lengthened body.", composition: "96% organic cotton, 4% elastane. Fine-gauge rib with self-bound neckline and armholes."
+      }
+    ];
+
+    const categories = ["Shop all", "Clothing", "Bags", "Shoes", "Underwear", "Accessories"];
+    const categoryOrder = categories.slice(1);
+    const underwearTypes = ["All underwear", "Singlets", "Boxers", "Pants", "Swimwear", "Tights"];
+    const categoryCounts = Object.fromEntries(categories.map((category) => [category, category === "Shop all" ? products.length : products.filter((product) => product.category === category).length]));
+    const categoryCopy = {
+      Clothing: "Soft tailoring, knitwear and everyday layers.",
+      Bags: "Leather forms built for daily movement.",
+      Shoes: "Grounded silhouettes in leather and suede.",
+      Underwear: "Singlets, boxers, pants, swimwear and tights.",
+      Accessories: "The finishing pieces of the Rone wardrobe."
+    };
+    const state = {
+      category: "Shop all",
+      subcategory: "All underwear",
+      filters: { gender: [], subcategory: [], tone: [], material: [], availability: [] },
+      sort: "featured",
+      view: "4",
+      galleryIndex: 0,
+      galleryImages: [],
+      selectedProduct: products[0],
+      selectedSize: "",
+      selectedColour: products[0].colour,
+      bag: [],
+      saved: [],
+      lastTrigger: null,
+      viewerTrigger: null
+    };
+    const layers = [...document.querySelectorAll("[data-layer]")];
+    const imageViewer = document.querySelector("[data-image-viewer]");
+    const productView = document.querySelector("[data-product-view]");
+    const sortSelect = document.querySelector("[data-sort]");
+    const sortSelected = document.querySelector("[data-sort-selected]");
+    const siteHeader = document.querySelector("[data-site-header]");
+    const navPreview = document.querySelector("[data-nav-preview]");
+    const navPreviewTriggers = [...document.querySelectorAll("[data-nav-preview-trigger]")];
+    let navPreviewCloseTimer;
+    const money = window.RONE_CURRENCY;
+
+    const escapeHtml = (value) => String(value).replace(/[&<>"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[character]));
+
+    function syncSortLabel() {
+      sortSelected.textContent = sortSelect.options[sortSelect.selectedIndex]?.textContent || "Featured";
+    }
+
+    function fullResolutionImage(image) {
+      try {
+        const url = new URL(image, window.location.href);
+        if (url.hostname === "images.pexels.com") url.searchParams.set("w", "2400");
+        return url.href;
+      } catch (error) {
+        return image;
+      }
+    }
+
+    function openNavPreview(name) {
+      if (window.matchMedia("(max-width: 760px)").matches) return;
+      window.clearTimeout(navPreviewCloseTimer);
+      navPreview.inert = false;
+      navPreview.setAttribute("aria-hidden", "false");
+      navPreview.classList.add("open");
+      document.querySelectorAll("[data-nav-preview-panel]").forEach((panel) => panel.classList.toggle("active", panel.dataset.navPreviewPanel === name));
+      navPreviewTriggers.forEach((trigger) => trigger.setAttribute("aria-expanded", String(trigger.dataset.navPreviewTrigger === name)));
+    }
+
+    function closeNavPreview() {
+      window.clearTimeout(navPreviewCloseTimer);
+      navPreview.classList.remove("open");
+      navPreview.setAttribute("aria-hidden", "true");
+      navPreview.inert = true;
+      navPreviewTriggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
+    }
+
+    function scheduleNavPreviewClose() {
+      window.clearTimeout(navPreviewCloseTimer);
+      navPreviewCloseTimer = window.setTimeout(closeNavPreview, 140);
+    }
+
+    function productCard(product) {
+      return `
+        <article class="product-card">
+          <button class="product-trigger" type="button" data-product-slug="${product.slug}" aria-label="View ${escapeHtml(product.name)}">
+            <span class="product-media">
+              ${product.flag ? `<span class="product-flag">${escapeHtml(product.flag)}</span>` : ""}
+              <img class="product-primary" src="${product.primary}" alt="${escapeHtml(product.name)} in ${escapeHtml(product.colour)}" loading="lazy">
+              <img class="product-worn" src="${product.worn}" alt="${escapeHtml(product.name)} styled on a person" loading="lazy">
+            </span>
+            <span class="product-meta">
+              <span class="product-name">${escapeHtml(product.name)}</span>
+              <span class="product-price">${money.format(product.price)}</span>
+              <span class="product-color">${escapeHtml(product.colour)} / ${escapeHtml(product.gender)}</span>
+            </span>
+          </button>
+        </article>`;
+    }
+
+    function activeProducts() {
+      const selected = state.filters;
+      let list = products.filter((product) => {
+        const matchesNav = state.category === "Shop all" || product.category === state.category;
+        const matchesSubnav = state.category !== "Underwear" || state.subcategory === "All underwear" || product.subcategory === state.subcategory;
+        const matchesGender = !selected.gender.length || selected.gender.includes(product.gender);
+        const matchesSubtype = !selected.subcategory.length || selected.subcategory.includes(product.subcategory);
+        const matchesTone = !selected.tone.length || selected.tone.includes(product.tone);
+        const matchesMaterial = !selected.material.length || selected.material.includes(product.material);
+        const matchesAvailability = !selected.availability.length || selected.availability.some((value) => value === "new" ? product.flag === "New" : product.flag === "Rone icon");
+        return matchesNav && matchesSubnav && matchesGender && matchesSubtype && matchesTone && matchesMaterial && matchesAvailability;
+      });
+
+      if (state.sort === "price-low") list.sort((a, b) => a.price - b.price);
+      if (state.sort === "price-high") list.sort((a, b) => b.price - a.price);
+      if (state.sort === "newest") list.sort((a, b) => (b.flag === "New") - (a.flag === "New") || a.featured - b.featured);
+      if (state.sort === "featured") list.sort((a, b) => a.featured - b.featured);
+      return list;
+    }
+
+    function renderCategories() {
+      document.querySelector("[data-category-nav]").innerHTML = categories.map((category, index) => `
+        <button class="category-button" type="button" data-category="${category}" aria-pressed="${state.category === category}">
+          <span>${category}</span><span>${String(index + 1).padStart(2, "0")} / ${categoryCounts[category]}</span>
+        </button>`).join("");
+      renderSubcategories();
+    }
+
+    function renderSubcategories() {
+      const nav = document.querySelector("[data-subcategory-nav]");
+      const visible = state.category === "Underwear";
+      nav.hidden = !visible;
+      nav.innerHTML = visible ? underwearTypes.map((subcategory) => {
+        const count = subcategory === "All underwear" ? categoryCounts.Underwear : products.filter((product) => product.subcategory === subcategory).length;
+        return `<button class="subcategory-button" type="button" data-subcategory="${subcategory}" aria-pressed="${state.subcategory === subcategory}">${subcategory}<span>${count}</span></button>`;
+      }).join("") : "";
+    }
+
+    function renderProducts() {
+      const list = activeProducts();
+      const groupsRoot = document.querySelector("[data-product-groups]");
+      const visibleCategories = state.category === "Shop all" ? categoryOrder : [state.category];
+      groupsRoot.innerHTML = visibleCategories.map((category) => {
+        const groupProducts = list.filter((product) => product.category === category);
+        if (!groupProducts.length) return "";
+        return `<section class="catalog-group" data-group="${category}" aria-labelledby="group-${category.toLowerCase()}">
+          <div class="catalog-group-head">
+            <div><p class="eyebrow">Department / ${String(groupProducts.length).padStart(2, "0")}</p><h3 id="group-${category.toLowerCase()}">${category}</h3></div>
+            <p class="group-copy">${categoryCopy[category]}</p>
+          </div>
+          <div class="product-grid" data-product-grid data-view="${state.view}">${groupProducts.map(productCard).join("")}</div>
+        </section>`;
+      }).join("");
+      groupsRoot.hidden = list.length === 0;
+      document.querySelector("[data-catalog-empty]").classList.toggle("visible", list.length === 0);
+      document.querySelector("[data-product-count]").textContent = `${list.length} ${list.length === 1 ? "piece" : "pieces"}`;
+      document.querySelector("[data-catalog-end]").textContent = list.length ? `Showing all ${list.length} ${list.length === 1 ? "piece" : "pieces"}` : "No pieces to show";
+      groupsRoot.querySelectorAll("[data-product-slug]").forEach((button) => button.addEventListener("click", () => openProduct(button.dataset.productSlug, button)));
+    }
+
+    function filterOptions(values, group) {
+      return values.map((value) => {
+        const count = products.filter((product) => product[group] === value).length;
+        return `<label class="check-row"><input type="checkbox" name="${group}" value="${escapeHtml(value)}"><span class="check-box" aria-hidden="true"></span><span>${escapeHtml(value)}</span><span>${count}</span></label>`;
+      }).join("");
+    }
+
+    function renderFilterOptions() {
+      document.querySelector('[data-filter-options="gender"]').innerHTML = filterOptions(["Men", "Women", "Unisex"], "gender");
+      document.querySelector('[data-filter-options="subcategory"]').innerHTML = filterOptions(underwearTypes.slice(1), "subcategory");
+      document.querySelector('[data-filter-options="tone"]').innerHTML = filterOptions([...new Set(products.map((product) => product.tone))], "tone");
+      document.querySelector('[data-filter-options="material"]').innerHTML = filterOptions([...new Set(products.map((product) => product.material))], "material");
+      document.querySelector('[data-filter-options="availability"]').innerHTML = [
+        ["new", "New arrivals", products.filter((product) => product.flag === "New").length],
+        ["icon", "Rone icons", products.filter((product) => product.flag === "Rone icon").length]
+      ].map(([value, label, count]) => `<label class="check-row"><input type="checkbox" name="availability" value="${value}"><span class="check-box" aria-hidden="true"></span><span>${label}</span><span>${count}</span></label>`).join("");
+    }
+
+    function applyFilters() {
+      const data = new FormData(document.querySelector("[data-filter-form]"));
+      state.filters = {
+        gender: data.getAll("gender"),
+        subcategory: data.getAll("subcategory"),
+        tone: data.getAll("tone"),
+        material: data.getAll("material"),
+        availability: data.getAll("availability")
+      };
+      const total = Object.values(state.filters).reduce((sum, values) => sum + values.length, 0);
+      const badge = document.querySelector("[data-filter-badge]");
+      badge.textContent = total;
+      badge.classList.toggle("visible", total > 0);
+      renderProducts();
+    }
+
+    function clearFilters() {
+      document.querySelector("[data-filter-form]").reset();
+      state.filters = { gender: [], subcategory: [], tone: [], material: [], availability: [] };
+      document.querySelector("[data-filter-badge]").classList.remove("visible");
+      renderProducts();
+    }
+
+    function closeLayers(options = {}) {
+      if (!imageViewer.hidden) closeImageViewer({ restoreFocus: false });
+      layers.forEach((layer) => {
+        layer.classList.remove("open");
+        layer.setAttribute("aria-hidden", "true");
+        layer.inert = true;
+      });
+      document.body.classList.remove("no-scroll");
+      if (!options.keepUrl) updateUrl();
+      if (options.restoreFocus !== false && state.lastTrigger && document.contains(state.lastTrigger)) state.lastTrigger.focus();
+    }
+
+    function openLayer(name, trigger, options = {}) {
+      closeNavPreview();
+      closeLayers({ restoreFocus: false, keepUrl: true });
+      const layer = document.querySelector(`[data-layer="${name}"]`);
+      if (!layer) return;
+      state.lastTrigger = trigger || document.activeElement;
+      layer.inert = false;
+      layer.setAttribute("aria-hidden", "false");
+      layer.classList.add("open");
+      document.body.classList.add("no-scroll");
+      if (!options.keepUrl) updateUrl(name);
+      window.setTimeout(() => {
+        const focusTarget = name === "search" ? layer.querySelector("input") : layer.querySelector("button, a, input, select");
+        if (focusTarget) focusTarget.focus();
+      }, 30);
+    }
+
+    function updateUrl(openState = "") {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("state");
+      url.searchParams.delete("product");
+      if (openState) url.searchParams.set("state", openState);
+      if (openState === "product") url.searchParams.set("product", state.selectedProduct.slug);
+      window.history.replaceState({}, "", url);
+    }
+
+    function showGalleryImage(index) {
+      const items = [...document.querySelectorAll("[data-gallery-item]")];
+      if (!items.length) return;
+      state.galleryIndex = (index + items.length) % items.length;
+      items.forEach((item, itemIndex) => {
+        const active = itemIndex === state.galleryIndex;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-hidden", String(!active));
+      });
+      document.querySelectorAll("[data-gallery-dot]").forEach((dot, dotIndex) => dot.setAttribute("aria-pressed", String(dotIndex === state.galleryIndex)));
+      document.querySelector("[data-gallery-count]").textContent = `${state.galleryIndex + 1} / ${items.length}`;
+      if (!imageViewer.hidden) renderImageViewer();
+    }
+
+    function renderImageViewer() {
+      const image = state.galleryImages[state.galleryIndex];
+      if (!image) return;
+      const imageNode = document.querySelector("[data-image-viewer-image]");
+      const nativeImage = fullResolutionImage(image);
+      imageNode.src = image;
+      imageNode.alt = `${state.selectedProduct.name} expanded image ${state.galleryIndex + 1}`;
+      const nativeLink = document.querySelector("[data-image-viewer-native]");
+      nativeLink.href = nativeImage;
+      nativeLink.setAttribute("aria-label", `Open full-size ${state.selectedProduct.name} image ${state.galleryIndex + 1} in the browser`);
+      document.querySelector("[data-image-viewer-title]").textContent = state.selectedProduct.name;
+      document.querySelector("[data-image-viewer-count]").textContent = `${state.galleryIndex + 1} / ${state.galleryImages.length}`;
+    }
+
+    function openImageViewer(index, trigger) {
+      state.viewerTrigger = trigger || document.activeElement;
+      showGalleryImage(index);
+      productView.inert = true;
+      imageViewer.hidden = false;
+      imageViewer.setAttribute("aria-hidden", "false");
+      renderImageViewer();
+      window.setTimeout(() => document.querySelector("[data-image-viewer-close]").focus(), 20);
+    }
+
+    function closeImageViewer(options = {}) {
+      imageViewer.hidden = true;
+      imageViewer.setAttribute("aria-hidden", "true");
+      productView.inert = false;
+      if (options.restoreFocus !== false && state.viewerTrigger && document.contains(state.viewerTrigger)) state.viewerTrigger.focus();
+    }
+
+    function renderProductView(product) {
+      state.selectedProduct = product;
+      state.selectedSize = product.sizes.length === 1 ? product.sizes[0] : "";
+      state.selectedColour = product.colour;
+      state.galleryIndex = 0;
+      document.querySelector("[data-drawer-kicker]").textContent = `Rone / ${product.gender}`;
+      document.querySelector("[data-drawer-name]").textContent = product.name;
+      document.querySelector("[data-drawer-category]").textContent = [product.category, product.subcategory, product.colour].filter(Boolean).join(" / ");
+      document.querySelector("[data-drawer-price]").textContent = money.format(product.price);
+      document.querySelector("[data-drawer-description]").textContent = product.description;
+      document.querySelector("[data-drawer-composition]").textContent = product.composition;
+      document.querySelector("[data-selected-colour]").textContent = product.colour;
+      state.galleryImages = [product.primary, product.worn, product.gallery[2]];
+      document.querySelector("[data-product-gallery]").innerHTML = state.galleryImages.map((image, index) => `<figure class="${index === 0 ? "active" : ""}" data-gallery-item aria-hidden="${index !== 0}"><button class="gallery-zoom-trigger" type="button" data-gallery-zoom="${index}" aria-label="Expand ${escapeHtml(product.name)} image ${index + 1}" title="View larger image"><img src="${image}" alt="${escapeHtml(product.name)} ${index === 0 ? "product view" : index === 1 ? "styled view" : "detail view"}"></button></figure>`).join("");
+      document.querySelector("[data-gallery-dots]").innerHTML = state.galleryImages.map((image, index) => `<button class="gallery-dot" type="button" data-gallery-dot="${index}" aria-label="View image ${index + 1}" aria-pressed="${index === 0}"></button>`).join("");
+      document.querySelector("[data-gallery-count]").textContent = `1 / ${state.galleryImages.length}`;
+      document.querySelector("[data-swatch-list]").innerHTML = product.colours.map((colour, index) => `<button class="swatch-button" style="--swatch:${colour.value}" type="button" data-colour="${escapeHtml(colour.name)}" aria-label="${escapeHtml(colour.name)}" aria-pressed="${index === 0}"></button>`).join("");
+      document.querySelector("[data-size-list]").innerHTML = product.sizes.map((size) => `<button class="size-button" type="button" data-size="${escapeHtml(size)}" aria-pressed="${state.selectedSize === size}">${escapeHtml(size)}</button>`).join("");
+      document.querySelector("[data-size-error]").classList.remove("visible");
+      updateSaveButton();
+
+      document.querySelectorAll("[data-gallery-dot]").forEach((button) => button.addEventListener("click", () => showGalleryImage(Number(button.dataset.galleryDot))));
+      document.querySelectorAll("[data-gallery-zoom]").forEach((button) => button.addEventListener("click", () => openImageViewer(Number(button.dataset.galleryZoom), button)));
+
+      document.querySelectorAll("[data-colour]").forEach((button) => button.addEventListener("click", () => {
+        state.selectedColour = button.dataset.colour;
+        document.querySelector("[data-selected-colour]").textContent = state.selectedColour;
+        document.querySelectorAll("[data-colour]").forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+      }));
+
+      document.querySelectorAll("[data-size]").forEach((button) => button.addEventListener("click", () => {
+        state.selectedSize = button.dataset.size;
+        document.querySelectorAll("[data-size]").forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        document.querySelector("[data-size-error]").classList.remove("visible");
+      }));
+    }
+
+    function openProduct(slug, trigger) {
+      const product = products.find((item) => item.slug === slug) || products[0];
+      renderProductView(product);
+      openLayer("product", trigger);
+    }
+
+    function loadSaved() {
+      const fallback = ["fold-leather-tote", "house-blazer", "soft-step-loafer", "fine-rib-singlet"];
+      try {
+        const raw = localStorage.getItem("roneSavedV1");
+        const stored = raw === null ? fallback : JSON.parse(raw);
+        if (Array.isArray(stored)) state.saved = stored.filter((slug) => products.some((product) => product.slug === slug));
+      } catch (error) { state.saved = fallback; }
+    }
+
+    function persistSaved() {
+      try { localStorage.setItem("roneSavedV1", JSON.stringify(state.saved)); } catch (error) { /* Storage is optional for the prototype. */ }
+    }
+
+    function updateSaveButton() {
+      const button = document.querySelector("[data-save-piece]");
+      const isSaved = state.saved.includes(state.selectedProduct.slug);
+      button.setAttribute("aria-pressed", String(isSaved));
+      button.textContent = isSaved ? "Saved" : "Save piece";
+    }
+
+    function toggleSaved() {
+      const slug = state.selectedProduct.slug;
+      const isSaved = state.saved.includes(slug);
+      state.saved = isSaved ? state.saved.filter((item) => item !== slug) : [...state.saved, slug];
+      persistSaved();
+      updateSaveButton();
+      showToast(isSaved ? `${state.selectedProduct.name} removed from your saved pieces.` : `${state.selectedProduct.name} saved to your edit.`);
+    }
+
+    function saveBag() {
+      try { localStorage.setItem("roneBagV1", JSON.stringify(state.bag)); } catch (error) { /* Storage is optional for the prototype. */ }
+    }
+
+    function loadBag() {
+      try {
+        const stored = JSON.parse(localStorage.getItem("roneBagV1") || "[]");
+        if (Array.isArray(stored)) state.bag = stored.filter((item) => products.some((product) => product.slug === item.slug));
+      } catch (error) { state.bag = []; }
+    }
+
+    function bagQuantity() {
+      return state.bag.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    function renderBag() {
+      const body = document.querySelector("[data-bag-body]");
+      const summary = document.querySelector("[data-bag-summary]");
+      const quantity = bagQuantity();
+      document.querySelectorAll("[data-bag-count]").forEach((node) => { node.textContent = quantity; });
+      document.querySelector("[data-bag-title-count]").textContent = quantity;
+
+      if (!state.bag.length) {
+        body.innerHTML = `<div class="bag-empty"><div><h3>Your bag is empty</h3><p>Build a wardrobe from the First Assembly.</p><button class="secondary-button" type="button" data-close>Continue shopping</button></div></div>`;
+        summary.hidden = true;
+        body.querySelector("[data-close]").addEventListener("click", () => closeLayers());
+        return;
+      }
+
+      body.innerHTML = `<div class="bag-items">${state.bag.map((item) => {
+        const product = products.find((entry) => entry.slug === item.slug);
+        return `<article class="bag-item">
+          <div class="bag-item-image"><img src="${product.primary}" alt="${escapeHtml(product.name)}"></div>
+          <div class="bag-item-body">
+            <div class="bag-item-head"><h3>${escapeHtml(product.name)}</h3><p>${money.format(product.price * item.quantity)}</p></div>
+            <p class="bag-item-meta">${escapeHtml(item.colour)} / ${escapeHtml(item.size)}</p>
+            <div class="bag-item-controls">
+              <div class="quantity-control" aria-label="Quantity for ${escapeHtml(product.name)}">
+                <button type="button" data-quantity="minus" data-item-id="${item.id}" aria-label="Decrease quantity">&minus;</button>
+                <span aria-live="polite">${item.quantity}</span>
+                <button type="button" data-quantity="plus" data-item-id="${item.id}" aria-label="Increase quantity">+</button>
+              </div>
+              <button class="remove-button" type="button" data-remove-item="${item.id}">Remove</button>
+            </div>
+          </div>
+        </article>`;
+      }).join("")}</div>`;
+      summary.hidden = false;
+      const subtotal = state.bag.reduce((sum, item) => {
+        const product = products.find((entry) => entry.slug === item.slug);
+        return sum + product.price * item.quantity;
+      }, 0);
+      const remaining = Math.max(0, 500 - subtotal);
+      document.querySelector("[data-delivery-message]").textContent = remaining ? `Add ${money.format(remaining)} for complimentary delivery.` : "Complimentary delivery is unlocked.";
+      document.querySelector("[data-delivery-progress]").style.width = `${Math.min(100, subtotal / 500 * 100)}%`;
+      document.querySelector("[data-bag-subtotal]").textContent = money.format(subtotal);
+
+      body.querySelectorAll("[data-quantity]").forEach((button) => button.addEventListener("click", () => {
+        const item = state.bag.find((entry) => entry.id === button.dataset.itemId);
+        if (!item) return;
+        item.quantity = Math.max(1, item.quantity + (button.dataset.quantity === "plus" ? 1 : -1));
+        saveBag();
+        renderBag();
+      }));
+      body.querySelectorAll("[data-remove-item]").forEach((button) => button.addEventListener("click", () => {
+        state.bag = state.bag.filter((item) => item.id !== button.dataset.removeItem);
+        saveBag();
+        renderBag();
+      }));
+    }
+
+    function addToBag() {
+      if (!state.selectedSize) {
+        const error = document.querySelector("[data-size-error]");
+        error.classList.add("visible");
+        document.querySelector("[data-size-list]").focus?.();
+        return;
+      }
+      const existing = state.bag.find((item) => item.slug === state.selectedProduct.slug && item.size === state.selectedSize && item.colour === state.selectedColour);
+      if (existing) existing.quantity += 1;
+      else state.bag.push({ id: `${state.selectedProduct.slug}-${state.selectedSize}-${state.selectedColour}`.replace(/\s+/g, "-").toLowerCase(), slug: state.selectedProduct.slug, size: state.selectedSize, colour: state.selectedColour, quantity: 1 });
+      saveBag();
+      renderBag();
+      openLayer("bag", document.querySelector("[data-add-to-bag]"));
+    }
+
+    function searchResults(query) {
+      const normalized = query.trim().toLowerCase();
+      if (!normalized) return [];
+      return products.filter((product) => [product.name, product.category, product.subcategory, product.gender, product.colour, product.material, product.tone].filter(Boolean).join(" ").toLowerCase().includes(normalized));
+    }
+
+    function renderSearch(query = "") {
+      const body = document.querySelector("[data-search-body]");
+      if (!query.trim()) {
+        const suggestions = [
+          { label: "New arrivals", value: "New" },
+          { label: "Bags", value: "Bags" },
+          { label: "Tailoring", value: "Wool" },
+          { label: "Underwear", value: "Underwear" },
+          { label: `Gifts under ${money.format(500)}`, value: "Accessories" }
+        ];
+        body.innerHTML = `<div class="search-suggestions">
+          <div><p class="eyebrow">Popular searches</p><div class="suggestion-list">${suggestions.map((item) => `<button class="suggestion-button" type="button" data-search-term="${item.value}">${item.label}</button>`).join("")}</div></div>
+          <div class="search-feature"><img src="${imageUrl("8483769", 1200)}" alt="Relaxed neutral Rone tailoring"><div class="search-feature-copy"><p class="eyebrow">Rone edit</p><h2>The new language of daily tailoring.</h2><button class="text-button" type="button" data-search-term="Clothing">View clothing</button></div></div>
+        </div>`;
+      } else {
+        const results = searchResults(query);
+        body.innerHTML = results.length ? `<h2 class="search-results-title">${results.length} ${results.length === 1 ? "result" : "results"} for &ldquo;${escapeHtml(query)}&rdquo;</h2><div class="search-results-grid" style="--result-count:${Math.min(results.length, 4)}">${results.map((product) => `<button class="search-result" type="button" data-search-product="${product.slug}"><img src="${product.primary}" alt="${escapeHtml(product.name)}"><span>${escapeHtml(product.name)}</span><span>${money.format(product.price)}</span></button>`).join("")}</div>` : `<div class="search-empty"><h2>No results for &ldquo;${escapeHtml(query)}&rdquo;</h2><p>Try a category, colour or material.</p></div>`;
+      }
+      body.querySelectorAll("[data-search-term]").forEach((button) => button.addEventListener("click", () => {
+        const value = button.dataset.searchTerm;
+        document.querySelector("[data-search-input]").value = value;
+        renderSearch(value);
+      }));
+      body.querySelectorAll("[data-search-product]").forEach((button) => button.addEventListener("click", () => openProduct(button.dataset.searchProduct, button)));
+    }
+
+    let toastTimer;
+    function showToast(message) {
+      const toast = document.querySelector("[data-toast]");
+      toast.textContent = message;
+      toast.classList.add("visible");
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => toast.classList.remove("visible"), 2600);
+    }
+
+    function trapFocus(event) {
+      if (event.key !== "Tab") return;
+      const openLayerNode = document.querySelector("[data-layer].open");
+      if (!openLayerNode) return;
+      const focusRoot = imageViewer.hidden ? openLayerNode : imageViewer;
+      const focusable = [...focusRoot.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), summary, [tabindex]:not([tabindex="-1"])')].filter((element) => element.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
+
+    renderCategories();
+    renderFilterOptions();
+    loadSaved();
+    loadBag();
+    renderProducts();
+    renderBag();
+    renderSearch();
+
+    navPreviewTriggers.forEach((trigger) => {
+      trigger.addEventListener("mouseenter", () => openNavPreview(trigger.dataset.navPreviewTrigger));
+      trigger.addEventListener("focus", () => openNavPreview(trigger.dataset.navPreviewTrigger));
+      trigger.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          openNavPreview(trigger.dataset.navPreviewTrigger);
+          navPreview.querySelector(".nav-preview-panel.active a")?.focus();
+        }
+      });
+    });
+    siteHeader.addEventListener("mouseleave", scheduleNavPreviewClose);
+    navPreview.addEventListener("mouseenter", () => window.clearTimeout(navPreviewCloseTimer));
+    navPreview.addEventListener("mouseleave", scheduleNavPreviewClose);
+
+    document.querySelector("[data-category-nav]").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-category]");
+      if (!button) return;
+      state.category = button.dataset.category;
+      state.subcategory = "All underwear";
+      renderCategories();
+      renderProducts();
+    });
+
+    document.querySelector("[data-subcategory-nav]").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-subcategory]");
+      if (!button) return;
+      state.subcategory = button.dataset.subcategory;
+      renderSubcategories();
+      renderProducts();
+    });
+
+    sortSelect.addEventListener("change", (event) => {
+      state.sort = event.target.value;
+      syncSortLabel();
+      renderProducts();
+    });
+    document.querySelectorAll("[data-view]").forEach((button) => button.addEventListener("click", () => {
+      state.view = button.dataset.view;
+      document.querySelectorAll("[data-product-grid]").forEach((grid) => { grid.dataset.view = state.view; });
+      document.querySelectorAll("[data-view]").forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+    }));
+    document.querySelector("[data-gallery-prev]").addEventListener("click", () => showGalleryImage(state.galleryIndex - 1));
+    document.querySelector("[data-gallery-next]").addEventListener("click", () => showGalleryImage(state.galleryIndex + 1));
+    document.querySelector("[data-image-viewer-prev]").addEventListener("click", () => showGalleryImage(state.galleryIndex - 1));
+    document.querySelector("[data-image-viewer-next]").addEventListener("click", () => showGalleryImage(state.galleryIndex + 1));
+    document.querySelector("[data-image-viewer-close]").addEventListener("click", () => closeImageViewer());
+    document.querySelector("[data-image-viewer-stage]").addEventListener("click", (event) => { if (event.target === event.currentTarget) closeImageViewer(); });
+    document.querySelectorAll("[data-open]").forEach((button) => button.addEventListener("click", () => {
+      if (button.dataset.open === "search") renderSearch(document.querySelector("[data-search-input]").value);
+      if (button.dataset.open === "bag") renderBag();
+      openLayer(button.dataset.open, button);
+    }));
+    document.querySelectorAll("[data-close]").forEach((button) => button.addEventListener("click", () => closeLayers()));
+    layers.forEach((layer) => layer.addEventListener("click", (event) => { if (event.target === layer && !layer.classList.contains("search-layer") && !layer.classList.contains("menu-layer")) closeLayers(); }));
+    document.querySelectorAll("[data-clear-filters]").forEach((button) => button.addEventListener("click", clearFilters));
+    document.querySelector("[data-apply-filters]").addEventListener("click", () => { applyFilters(); closeLayers(); });
+    document.querySelector("[data-filter-form]").addEventListener("submit", (event) => { event.preventDefault(); applyFilters(); closeLayers(); });
+    document.querySelector("[data-add-to-bag]").addEventListener("click", addToBag);
+    document.querySelector("[data-save-piece]").addEventListener("click", toggleSaved);
+    document.querySelector("[data-search-input]").addEventListener("input", (event) => renderSearch(event.target.value));
+    document.querySelector("[data-search-input]").addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && event.currentTarget.value.trim()) window.location.href = `rone-search-v1.html?q=${encodeURIComponent(event.currentTarget.value.trim())}`;
+    });
+    document.querySelector("[data-menu-search]").addEventListener("click", () => { renderSearch(); openLayer("search", document.querySelector("[data-menu-search]")); });
+    document.querySelectorAll(".mobile-menu-nav a").forEach((link) => link.addEventListener("click", () => closeLayers({ restoreFocus: false })));
+    window.addEventListener("rone:currencychange", () => {
+      renderProducts();
+      renderBag();
+      renderSearch(document.querySelector("[data-search-input]").value);
+      document.querySelector("[data-drawer-price]").textContent = money.format(state.selectedProduct.price);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (!imageViewer.hidden) {
+        if (event.key === "Escape") { event.preventDefault(); closeImageViewer(); return; }
+        if (event.key === "ArrowLeft") { event.preventDefault(); showGalleryImage(state.galleryIndex - 1); return; }
+        if (event.key === "ArrowRight") { event.preventDefault(); showGalleryImage(state.galleryIndex + 1); return; }
+      }
+      if (event.key === "Escape" && navPreview.classList.contains("open")) closeNavPreview();
+      if (event.key === "Escape" && document.querySelector("[data-layer].open")) closeLayers();
+      if (document.querySelector('[data-layer="product"].open') && event.key === "ArrowLeft") showGalleryImage(state.galleryIndex - 1);
+      if (document.querySelector('[data-layer="product"].open') && event.key === "ArrowRight") showGalleryImage(state.galleryIndex + 1);
+      trapFocus(event);
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const requestedCategory = params.get("category");
+    if (requestedCategory && categories.includes(requestedCategory)) {
+      state.category = requestedCategory;
+      renderCategories();
+      renderProducts();
+    }
+    const requestedSubcategory = params.get("subcategory");
+    if (state.category === "Underwear" && requestedSubcategory && underwearTypes.includes(requestedSubcategory)) {
+      state.subcategory = requestedSubcategory;
+      renderSubcategories();
+      renderProducts();
+    }
+    const requestedSort = params.get("sort");
+    if (["featured", "newest", "price-low", "price-high"].includes(requestedSort)) {
+      state.sort = requestedSort;
+      sortSelect.value = requestedSort;
+      syncSortLabel();
+      renderProducts();
+    }
+    const requestedGender = params.get("gender");
+    if (["Men", "Women", "Unisex"].includes(requestedGender)) {
+      const genderInput = document.querySelector(`input[name="gender"][value="${requestedGender}"]`);
+      if (genderInput) genderInput.checked = true;
+      applyFilters();
+    }
+    if (params.get("filter") === "icon") {
+      const iconInput = document.querySelector('input[name="availability"][value="icon"]');
+      if (iconInput) iconInput.checked = true;
+      applyFilters();
+    }
+    const requestedState = params.get("state");
+    if (requestedState === "hover") document.body.classList.add("force-hover");
+    if (requestedState === "product") openProduct(params.get("product") || products[0].slug, document.querySelector('[data-product-slug]'));
+    if (requestedState === "bag") {
+      if (!state.bag.length) {
+        state.bag = [{ id: "fold-leather-tote-one-size-cacao", slug: "fold-leather-tote", size: "One size", colour: "Cacao", quantity: 1 }];
+        saveBag();
+      }
+      renderBag();
+      openLayer("bag", document.querySelector('[data-open="bag"]'));
+    }
+    if (requestedState === "filters") openLayer("filters", document.querySelector('[data-open="filters"]'));
+    if (requestedState === "search") {
+      const requestedQuery = params.get("q") || "bag";
+      document.querySelector("[data-search-input]").value = requestedQuery;
+      renderSearch(requestedQuery);
+      openLayer("search", document.querySelector('[data-open="search"]'));
+    }
+
+    window.__RONE_READY__ = true;
+  </script>
+</body>
+</html>
